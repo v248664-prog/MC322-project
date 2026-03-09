@@ -1,3 +1,5 @@
+ // basicamente uma carta de dano
+
 public class RUSTYGUN {
     int munition;
     boolean charged = false;

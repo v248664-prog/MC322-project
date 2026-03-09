@@ -1,6 +1,8 @@
+// basicamente uma carta de dano
+
 import java.util.Random;
 
-public class OLD_BOMB {
+public class OLD_BOMB { 
     int qnt;
 
     public OLD_BOMB(int qnt) {

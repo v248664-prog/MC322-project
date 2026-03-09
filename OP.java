@@ -17,7 +17,10 @@ public class OP {
     }
 
     public void receive_damage(int damage) {
-        health =- damage * (defence/100);
+        health -= (int)(damage * ((100.0 - defence) /100.0));
+        if (health < 0) {
+            health = 0;
+        }
     }
 
     public void recover_health() {
@@ -26,5 +29,9 @@ public class OP {
 
     public void recover_energy() {
         energy += 30;
+    }
+
+    public void show_health_op() {
+        System.out.println("health op: " + this.health);
     }
 }
