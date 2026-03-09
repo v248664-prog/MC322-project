@@ -1,20 +1,20 @@
-// basicamente uma carta de dano
-
 import java.util.Random;
 
-public class OLD_BOMB { 
-    int qnt;
+public class OLD_BOMB {
+   int qnt;
 
-    public OLD_BOMB(int qnt) {
-        this.qnt = qnt;
-    }
+   public OLD_BOMB(int var1) {
+      this.qnt = var1;
+   }
 
-    public void activate(OP op) {
-        if (this.qnt >= 1) {
-            Random random = new Random();
-            int explosion = random.nextInt(100);
-            op.receive_damage(explosion);
-            this.qnt -= 1;
-        }
-    }
+   public void activate(OP var1, PT var2) {
+      if (this.qnt >= 1) {
+         var2.energy -= 3;
+         Random var3 = new Random();
+         int var4 = var3.nextInt(100);
+         var1.receive_damage(var4);
+         --this.qnt;
+      }
+
+   }
 }

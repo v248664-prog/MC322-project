@@ -1,74 +1,71 @@
 import java.util.Scanner;
 
 public class Main {
-    
-    public static void main(String[] args) {
-        
-        System.out.println("");
-        System.out.println("An Adult Nuko is blocking the passage");
+   public Main() {
+   }
 
-        Scanner sc = new Scanner(System.in);
+   public static void main(String[] var0) {
+      System.out.println("");
+      System.out.println("An Adult Nuko is blocking the passage");
+      System.out.println("");
+      Scanner var1 = new Scanner(System.in);
+      OP var2 = new OP();
+      PT var3 = new PT();
+      OLD_BOMB var4 = new OLD_BOMB(10);
+      RUSTYGUN var5 = new RUSTYGUN(20);
+      HIDE var6 = new HIDE(0);
 
-        OP op = new OP();
-        PT pt = new PT();
-
-        OLD_BOMB ob = new OLD_BOMB(10);
-        RUSTYGUN rg = new RUSTYGUN(20);
-
-        while (op.health_status() && pt.health_status()) {
-            System.out.println("");
-            System.out.println("1. Use the gun");
-            System.out.println("2. Throw the bomb");
-            System.out.println("3. Recover");
-
-            int action = sc.nextInt();
-
-            if (action == 1 && pt.energy >= 1) {
-                if (rg.charged) {
-                    rg.shoot(op);
-                }
-                else {
-                    rg.charge();
-                }
-                pt.energy -= 1;
+      while(var2.health_status() && var3.health_status()) {
+         System.out.println("1. Use the gun");
+         System.out.println("2. Throw the bomb");
+         System.out.println("3. Hide");
+         System.out.println("4. Recover");
+         System.out.println("");
+         int var7 = var1.nextInt();
+         if (var7 == 1 && var3.energy >= 1) {
+            if (var5.charged) {
+               var5.shoot(var2, var3);
+            } else {
+               var5.charge(var3);
             }
-
-            else if (action == 2 && pt.energy >= 1) {
-                ob.activate(op);
-                pt.energy -= 1;
-            }
-
-            else if (action == 3) {
-                System.out.println("1. restore health");
-                System.out.println("2. recover energy");
-                action = sc.nextInt();
-                if (action == 1) {
-                    pt.recover_energy();
-                }
-                else {
-                    pt.recover_health();
-                }
-            }
-
-            if (op.health_status()) {
-                op.bite(pt);
-            }
-
+         } else if (var7 == 2 && var3.energy >= 1) {
+            var4.activate(var2, var3);
+         } else if (var7 == 3 && var3.energy >= 1) {
+            var6.find_shelter(var3);
+         } else if (var7 == 4) {
             System.out.println("");
-            op.show_health_op();
+            System.out.println("1. restore health");
+            System.out.println("2. recover energy");
             System.out.println("");
-            pt.show_health_pt();
-            System.out.println("");
-        }
+            var7 = var1.nextInt();
+            if (var7 == 1) {
+               var3.receive_energy();
+            } else {
+               var3.recover_health();
+            }
+         }
 
-        if (op.health_status()) {
-            System.out.println("health pt: 0");
-            System.out.println("You shouldnt have started a battle you couldnt win");
-        }
-        else {
-            pt.show_health_pt();
-            System.out.println("The Nuko isn't moving anymore");
-        }
-    sc.close();
-    }
+         if (var2.health_status()) {
+            var2.bite(var3);
+         }
+
+         System.out.println("");
+         var2.show_health_op();
+         System.out.println("");
+         var3.show_health_pt();
+         System.out.println("");
+         var6.ending_bonus(var3);
+      }
+
+      if (var2.health_status()) {
+         System.out.println("health pt: 0");
+         System.out.println("You shouldnt have started a battle you couldnt win");
+      } else {
+         var3.show_health_pt();
+         System.out.println("");
+         System.out.println("The Nuko isn't moving anymore");
+      }
+
+      var1.close();
+   }
 }

@@ -8,15 +8,17 @@ public class RUSTYGUN {
         this.munition = munition;
     }
 
-    public void charge() {
-        this.charged = true;
+    public void charge(PT pt) {
+        charged = true;
+        pt.energy -= 2;
     }
 
-    public void shoot(OP op) {
+    public void shoot(OP op, PT pt) {
+        pt.energy -= 2;
         if (this.charged) {
-            if (this.munition >= 1) {
-                op.receive_damage(10);
-                this.munition--;
+            if (munition >= 1) {
+                op.receive_damage(20);
+                munition--;
             }
             else {
                 System.out.println("sem munição");
