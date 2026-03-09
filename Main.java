@@ -50,15 +50,15 @@ public class Main {
                 }
             }
 
+            if (op.health_status()) {
+                op.bite(pt);
+            }
+
             System.out.println("");
             op.show_health_op();
             System.out.println("");
             pt.show_health_pt();
             System.out.println("");
-
-            if (op.health_status()) {
-                op.bite(pt);
-            }
         }
 
         if (op.health_status()) {
