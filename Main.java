@@ -61,8 +61,7 @@ public class Main {
          System.out.println("health pt: 0");
          System.out.println("You shouldnt have started a battle you couldnt win");
       } else {
-         var3.show_health_pt();
-         System.out.println("");
+         System.out.println("health op: 0");
          System.out.println("The Nuko isn't moving anymore");
       }
 
