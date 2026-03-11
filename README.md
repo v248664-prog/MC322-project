@@ -1,24 +1,18 @@
-Para compilar e executar esse mini jogo,
+Para compilar e executar este mini-jogo, escreva os seguintes comandos no terminal:
 
 javac -d bin $(find src -name "*.java")
 java -cp bin App
 
-escreva esses comandos no terminal;
+O jogo consiste em um combate simples entre você, o herói, e um Nuko.
+Ele está bloqueando seu caminho enquanto você tenta subir até o topo da cidade.
 
-O jogo é um combate simples entre você, heroi, e um nuko
-Ele está atrapalhando a sua subida para o topo da cidade
+Para vencer essa batalha, você terá algumas opções:
 
-Para conseguir vencer essa batalha, você é dado algumas 
-opções do qeu fazer
+usar uma das várias armas velhas espalhadas pela cidade já destruída;
 
--usar uma das várias armas velhas que estão espalhadas por 
-uma cidade já destruída
+tentar a sorte com bombas antigas guardadas em caixas que nunca foram abertas;
 
--tentar a sorte com as bombas velhas espalhadas em caixas que 
-nunca foram abertas
+agir com cautela, escondendo-se para se proteger melhor, recuperando sua energia e energia.
 
--tentar ser cuidadoso e se esconder para melhor proteção
-ou mesmo se curar/ recuperar a sua energia
-
-já fazem anos que você sobe essa torre de concreto, quantos anos
-a mais vão demorar?
+Já fazem anos que você sobe essa torre de concreto.
+Quantos a mais ainda vão demorar?
