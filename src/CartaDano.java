@@ -9,6 +9,7 @@ public class CartaDano {
    public CartaDano(int qnt) {
       this.qnt = qnt;
    }
+   // construtor da bomba
 
    public void activate(Inimigo op, Heroi prota) {
 
@@ -24,4 +25,5 @@ public class CartaDano {
          qnt--;
       }
    }
+   // dano da bomba
 }

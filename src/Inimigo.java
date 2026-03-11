@@ -6,18 +6,21 @@ public class Inimigo {
    int defence = 10;
    int attack = 20;
    int health = 120;
+   //atributos do inimigo
 
    public boolean health_status_op() {
       return this.health > 0;
    }
+   //checagem de vida
 
    public void bite(Heroi prota) {
-      prota.health -= this.attack;
+      prota.receive_damage(this.attack);
 
       if (prota.health < 0) {
          prota.health = 0;
       }
    }
+   // ataque basico
 
    public void receive_damage(int dmg) {
 
@@ -27,8 +30,10 @@ public class Inimigo {
          this.health = 0;
       }
    }
+   // dano
 
    public void show_health_op() {
       System.out.println("NUKO's health: " + this.health);
    }
+   //print da vida
 }

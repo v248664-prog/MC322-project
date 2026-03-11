@@ -8,6 +8,7 @@ public class CartaDano2 {
    public CartaDano2(int munition) {
       this.munition = munition;
    }
+   // construtor da arma
 
    public void charge(Heroi prota) {
 
@@ -16,6 +17,7 @@ public class CartaDano2 {
          prota.energy -= 2;
       }
    }
+   // carregar
 
    public void shoot(Inimigo op, Heroi prota) {
 
@@ -38,4 +40,5 @@ public class CartaDano2 {
          System.out.println("Não há nada na câmara");
       }
    }
+   //atirar
 }

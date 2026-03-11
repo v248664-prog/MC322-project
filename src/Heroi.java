@@ -6,10 +6,12 @@ public class Heroi {
    int attack = 0;
    int health = 100;
    int energy = 30;
+   //atributos do heroi
 
    public boolean health_status() {
       return this.health > 0;
    }
+   // checagem de vida
 
    public void receive_damage(int dmg) {
 
@@ -19,6 +21,7 @@ public class Heroi {
          this.health = 0;
       }
    }
+   // recebe dano
 
    public void recover_health() {
 
@@ -28,6 +31,7 @@ public class Heroi {
          this.health = 100;
       }
    }
+   // cura
 
    public void receive_energy() {
 
@@ -37,9 +41,11 @@ public class Heroi {
          this.energy = 30;
       }
    }
+   // regen da energia
 
-   public void show_health_pt() {
+   public void show_pt() {
       System.out.println("Your health: " + this.health);
       System.out.println("Energy: " + this.energy);
    }
+   //print da vida
 }

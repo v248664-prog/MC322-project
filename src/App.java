@@ -5,19 +5,23 @@ import java.util.Scanner;
 public class App {
 
    public static void main(String[] args) {
+      //tentando chegar ao topo da cidade, voce se encontra com um nuko
 
       System.out.println("");
       System.out.println("An Adult Nuko is blocking the passage");
       System.out.println("");
 
       Scanner scam = new Scanner(System.in);
+      // para a escolha
 
       Inimigo op = new Inimigo();
       Heroi pt = new Heroi();
+      // atores
 
       CartaDano bomb = new CartaDano(10);
       CartaDano2 gun = new CartaDano2(20);
-      CartaEscudo hide = new CartaEscudo(3);
+      CartaEscudo hide = new CartaEscudo(10);
+      // objetos
 
       while (op.health_status_op() && pt.health_status()) {
 
@@ -26,6 +30,7 @@ public class App {
          System.out.println("3. Hide");
          System.out.println("4. Recover");
          System.out.println("");
+         //opcoes
 
          int choice = scam.nextInt();
 
@@ -67,14 +72,17 @@ public class App {
          if (op.health_status_op()) {
             op.bite(pt);
          }
+         // turno do nuko
 
          System.out.println("");
          op.show_health_op();
          System.out.println("");
-         pt.show_health_pt();
+         pt.show_pt();
          System.out.println("");
+         // status da batalha
 
          hide.ending_bonus(pt);
+         //fim do bonus
       }
 
       if (op.health_status_op()) {
@@ -87,6 +95,7 @@ public class App {
          System.out.println("");
          System.out.println("The Nuko isn't moving anymore");
       }
+      // vencedor
 
       scam.close();
    }
