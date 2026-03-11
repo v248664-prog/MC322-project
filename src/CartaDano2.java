@@ -1,0 +1,41 @@
+package src;
+
+public class CartaDano2 {
+
+   int munition;
+   boolean charged = false;
+
+   public CartaDano2(int munition) {
+      this.munition = munition;
+   }
+
+   public void charge(Heroi prota) {
+
+      if (prota.energy >= 2) {
+         charged = true;
+         prota.energy -= 2;
+      }
+   }
+
+   public void shoot(Inimigo op, Heroi prota) {
+
+      if (charged && munition > 0) {
+
+         prota.energy -= 2;
+
+         op.receive_damage(30);
+
+         munition--;
+
+         charged = false;
+
+      } else if (munition <= 0) {
+
+         System.out.println("Sem munição");
+
+      } else {
+
+         System.out.println("Não há nada na câmara");
+      }
+   }
+}

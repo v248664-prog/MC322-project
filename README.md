@@ -1,0 +1,1 @@
+Eu estou imprecionado com a capicidade do java de otimizar o próprio código. Eu sabia que tinha algo assim, mas não estava assim tão fixo na minha memória
