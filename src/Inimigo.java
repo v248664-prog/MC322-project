@@ -1,5 +1,3 @@
-package src;
-
 public class Inimigo {
 
    String name = "NUKO";

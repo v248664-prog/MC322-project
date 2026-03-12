@@ -1,5 +1,3 @@
-package src;
-
 public class CartaDano2 {
 
    int munition;

@@ -1,11 +1,10 @@
-package src;
-
 import java.util.Random;
 
 public class CartaEscudo {
 
    int possible_hiding_spots;
-   int lucky_number;
+   int lucky_number = 5;
+   boolean tryed = false;
 
    public CartaEscudo(int possible_hiding_spots) {
       this.possible_hiding_spots = possible_hiding_spots;
@@ -13,6 +12,8 @@ public class CartaEscudo {
    // construtor da carta
 
    public void find_shelter(Heroi prota) {
+
+      this.tryed = true;
 
       if (this.possible_hiding_spots > 0) {
 
@@ -36,7 +37,7 @@ public class CartaEscudo {
             prota.defence += 50;
             lucky_number = 1;
 
-         } else {
+         } else if (num == 0) {
 
             prota.defence += 75;
             prota.health += 5;
@@ -62,6 +63,7 @@ public class CartaEscudo {
       else if (lucky_number == 0) {
          prota.defence -= 75;
       }
+      this.tryed = false;
    }
    // fim do bonus
 }

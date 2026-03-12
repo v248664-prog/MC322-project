@@ -1,5 +1,3 @@
-package src;
-
 import java.util.Scanner;
 
 public class App {
@@ -81,7 +79,9 @@ public class App {
          System.out.println("");
          // status da batalha
 
-         hide.ending_bonus(pt);
+         if (hide.tryed == true) {
+            hide.ending_bonus(pt);
+         }
          //fim do bonus
       }
 
