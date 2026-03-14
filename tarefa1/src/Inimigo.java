@@ -1,8 +1,9 @@
-public class Inimigo {
+public class Inimigo extends Entidade{
 
    String name = "NUKO";
-   int defence = 10;
    int attack = 20;
+   int defence = 10;
+   int energy = 30;
    int health = 120;
    //atributos do inimigo
 
@@ -30,7 +31,25 @@ public class Inimigo {
    }
    // dano
 
-   public void show_health_op() {
+   public void recover_health() {
+
+      this.health += 10;
+
+      if (this.health > 100) {
+         this.health = 100;
+      }
+   }
+
+   public void receive_energy() {
+
+      this.energy += 3;
+
+      if (this.energy > 30) {
+         this.energy = 30;
+      }
+   }
+
+   public void show() {
       System.out.println("NUKO's health: " + this.health);
    }
    //print da vida

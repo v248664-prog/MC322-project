@@ -1,9 +1,10 @@
-public class Heroi {
+public class Heroi extends Entidade{
 
-   int defence = 0;
+   String name = "NUKO";
    int attack = 0;
-   int health = 100;
+   int defence = 0;
    int energy = 30;
+   int health = 100;
    //atributos do heroi
 
    public boolean health_status() {
@@ -41,7 +42,7 @@ public class Heroi {
    }
    // regen da energia
 
-   public void show_pt() {
+   public void show() {
       System.out.println("Your health: " + this.health);
       System.out.println("Energy: " + this.energy);
    }

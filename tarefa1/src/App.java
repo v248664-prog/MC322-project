@@ -73,9 +73,9 @@ public class App {
          // turno do nuko
 
          System.out.println("");
-         op.show_health_op();
+         op.show();
          System.out.println("");
-         pt.show_pt();
+         pt.show();
          System.out.println("");
          // status da batalha
 
