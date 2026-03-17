@@ -1,15 +1,16 @@
 import java.util.Random;
 
-public class CartaDano {
+public class CartaDano extends Carta {
 
    int qnt;
 
    public CartaDano(int qnt) {
+      super("Bomba", "Causa dano aleatório", 3);
       this.qnt = qnt;
    }
    // construtor da bomba
 
-   public void activate(Inimigo op, Heroi prota) {
+   public void usar(Inimigo op, Heroi prota) {
 
       if (qnt >= 1 && prota.energy >= 3) {
 

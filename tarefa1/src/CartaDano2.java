@@ -1,12 +1,17 @@
-public class CartaDano2 {
+public class CartaDano2 extends Carta{
 
    int munition;
    boolean charged = false;
 
    public CartaDano2(int munition) {
+      super("Arma", "Precisa carregar antes de atirar", 2);
       this.munition = munition;
    }
    // construtor da arma
+   @Override
+    public void usar(Inimigo op, Heroi prota) {
+        this.shoot(op, prota);
+    }
 
    public void charge(Heroi prota) {
 
