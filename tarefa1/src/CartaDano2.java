@@ -8,7 +8,6 @@ public class CartaDano2 extends Carta{
       this.munition = munition;
    }
    // construtor da arma
-   @Override
     public void usar(Inimigo op, Heroi prota) {
         this.shoot(op, prota);
     }
