@@ -5,6 +5,7 @@ abstract class Entidade {
     int defence;
     int energy;
     int health;
+    int escolha;
 
     abstract void receive_damage(int dmg);
 
@@ -12,5 +13,6 @@ abstract class Entidade {
 
    abstract void recover_health();
 
-   abstract void receive_energy();
+   abstract void recover_energy();
+
 }

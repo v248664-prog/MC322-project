@@ -43,7 +43,7 @@ public class App {
          }
          else if (choice == 2) {
 
-            bomb.activate(op, pt);
+            bomb.usar(op, pt);
 
          }
          else if (choice == 3) {
@@ -63,7 +63,7 @@ public class App {
             if (rec == 1) {
                pt.recover_health();
             } else {
-               pt.receive_energy();
+               pt.recover_energy();
             }
          }
 
