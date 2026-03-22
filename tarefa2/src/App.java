@@ -1,101 +1,142 @@
+//bibliotecas
 import java.util.Scanner;
+import java.util.ArrayList;     
+import java.util.Collections;
 
 public class App {
 
    public static void main(String[] args) {
-      //tentando chegar ao topo da cidade, voce se encontra com um nuko
 
       System.out.println("");
       System.out.println("An Adult Nuko is blocking the passage");
       System.out.println("");
+      // o cenário inicial se mantem
 
       Scanner scam = new Scanner(System.in);
-      // para a escolha
 
       Inimigo op = new Inimigo();
       Heroi pt = new Heroi();
-      // atores
 
-      CartaDano bomb = new CartaDano(10);
-      CartaDano2 gun = new CartaDano2(20);
-      CartaEscudo hide = new CartaEscudo(10);
-      // objetos
+      ArrayList<Carta> pilhaCompra = new ArrayList<>();
+      ArrayList<Carta> mao = new ArrayList<>();
+      ArrayList<Carta> pilhaDescarte = new ArrayList<>();
+      //criação dos arrays
+
+      // Deck, sempre entre 40-60 lol
+      for (int i = 0; i < 20; i++) {
+         pilhaCompra.add(new CartaDano());
+      }
+      for (int i = 0; i < 20; i++) {
+         pilhaCompra.add(new CartaDano2());
+      }
+      for (int i = 0; i < 20; i++) {
+         pilhaCompra.add(new CartaEscudo());
+      }
+
+      Collections.shuffle(pilhaCompra);
+
+      for (int i = 0; i < 3; i++) {
+            if (!pilhaCompra.isEmpty()) {
+               mao.add(pilhaCompra.remove(0));
+            }
+         }
+      //compra inicial
 
       while (op.health_status_op() && pt.health_status()) {
+        op.decisão();
 
-         System.out.println("1. Use the gun");
-         System.out.println("2. Throw the bomb");
-         System.out.println("3. Hide");
-         System.out.println("4. Recover");
-         System.out.println("");
-         //opcoes
+         System.out.println("\n=== SEU TURNO ===");
+         if (pilhaCompra.isEmpty()) {
+            pilhaCompra.addAll(pilhaDescarte);
+            pilhaDescarte.clear();
+            Collections.shuffle(pilhaCompra);
+         }
+         //manejamento do deck
 
-         int choice = scam.nextInt();
+         int esc = 1;
 
-         if (choice == 1 && pt.energy >= 2) {
-
-            if (gun.charged) {
-               gun.shoot(op, pt);
-            } else {
-               gun.charge(pt);
+         //turno do heroi
+         while(pt.energy > 0 && !(esc == 0)) {
+            if (!pilhaCompra.isEmpty()) {
+               mao.add(pilhaCompra.remove(0));
+               // compra para manter em 4 sempre
             }
-
-         }
-         else if (choice == 2) {
-
-            bomb.usar(op, pt);
-
-         }
-         else if (choice == 3) {
-
-            hide.find_shelter(pt);
-
-         }
-         else if (choice == 4) {
-
             System.out.println("");
-            System.out.println("1. restore health");
-            System.out.println("2. recover energy");
+            pt.show();
+            //info dos status
+            System.out.println("");
+            for (int i = 0; i < mao.size(); i++) {
+               Carta c = mao.get(i);
+               System.out.print((i + 1) + "." + c.nome + "(Custo: " + c.custo + ")  ");
+            }
+            //cartas
+            System.out.print("0. Pular turno");
+            //importante
             System.out.println("");
 
-            int rec = scam.nextInt();
+            int choice = scam.nextInt();
+            esc = choice;
+            // gambiarra
+            System.out.println("");
 
-            if (rec == 1) {
-               pt.recover_health();
+            if (choice > 0 && choice <= mao.size()) {
+
+               Carta cartaEscolhida = mao.remove(choice - 1);
+               // sistema de cemiterio
+
+               if (pt.energy >= cartaEscolhida.custo) {
+                  cartaEscolhida.usar(op, pt);
+                  // uso do escolhido
+                  pt.energy -= cartaEscolhida.custo;
+                  // gasto
+                  System.out.println("\n>>> Voce usou: " + cartaEscolhida.nome);
+               } else {
+                  System.out.println("\n>>> Energia insuficiente!");
+               }
+
+               pilhaDescarte.add(cartaEscolhida);
+               //recebimento da carta
+
+            } else if (choice == 0) {
+               System.out.println("\n>>> Turno encerrado.");
             } else {
-               pt.recover_energy();
+               System.out.println("\n>>> Opcao invalida.");
             }
+            System.out.println("");
+            op.show();
+            // como acoes repetem(noçao de dano e tals);
+            System.out.println("");
+
          }
 
          if (op.health_status_op()) {
-            op.bite(pt);
+            System.out.println("\n=== TURNO DO INIMIGO ===");
+            op.batalha(pt);
          }
-         // turno do nuko
 
-         System.out.println("");
-         op.show();
-         System.out.println("");
          pt.show();
          System.out.println("");
-         // status da batalha
 
-         if (hide.tryed == true) {
-            hide.ending_bonus(pt);
+         for (Carta c : pilhaDescarte) {
+            if (c instanceof CartaEscudo) {
+               CartaEscudo escudo = (CartaEscudo) c;
+               if (escudo.tryed) {
+                  escudo.ending_bonus(pt);
+               }
+            }
          }
-         //fim do bonus
+         // garante que cada instancia de hide vai ser revertida, talvez
+         // isso resulte na mudança dos valores de hide
+         pt.receive_energy();
+         op.receive_energy();
+        System.out.println();
       }
 
       if (op.health_status_op()) {
-
-         System.out.println("");
-         System.out.println("You shouldn't have started a battle you couldn't win");
-
+         System.out.println("\nYou shouldn't have started a battle you couldn't win");
       } else {
-
-         System.out.println("");
-         System.out.println("The Nuko isn't moving anymore");
+         System.out.println("\nThe Nuko ran away");
       }
-      // vencedor
 
       scam.close();
    }

@@ -5,14 +5,15 @@ abstract class Entidade {
     int defence;
     int energy;
     int health;
-    int escolha;
 
     abstract void receive_damage(int dmg);
 
-    abstract void show();
+   abstract void show();
 
-    abstract void recover_health();
+   abstract void recover_health();
 
-    abstract void recover_energy();
+   abstract void receive_energy();
 
+
+   // metodos e atributos de importancia
 }

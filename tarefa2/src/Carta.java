@@ -10,4 +10,6 @@ public abstract class Carta {
     }
 
     public abstract void usar(Inimigo op, Heroi prota);
+
+    //atributos e metodos de importancia
 }
