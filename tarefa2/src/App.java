@@ -35,7 +35,7 @@ public class App {
 
       Collections.shuffle(pilhaCompra);
 
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
             if (!pilhaCompra.isEmpty()) {
                mao.add(pilhaCompra.remove(0));
             }
@@ -107,6 +107,15 @@ public class App {
             // como acoes repetem(noçao de dano e tals);
             System.out.println("");
 
+         }
+
+         pilhaDescarte.addAll(mao);
+         mao.clear();
+
+         for (int i = 0; i < 4; i++) {
+            if (!pilhaCompra.isEmpty()) {
+               mao.add(pilhaCompra.remove(0));
+            }
          }
 
          if (op.health_status_op()) {
