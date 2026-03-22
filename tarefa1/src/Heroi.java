@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class Heroi extends Entidade{
 
-   String name = "NUKO";
+   String name;
    int attack = 0;
    int defence = 0;
    int energy = 30;
    int health = 100;
-   int escolha;
+   Carta[] mao = new Carta[7];
+   
    //atributos do heroi
 
    public boolean health_status() {

@@ -17,7 +17,7 @@ public class CartaDano extends Carta {
          prota.energy -= 3;
 
          Random ram = new Random();
-         int dano = ram.nextInt(100);
+         int dano = ram.nextInt(10);
 
          op.receive_damage(dano);
 

@@ -9,10 +9,10 @@ abstract class Entidade {
 
     abstract void receive_damage(int dmg);
 
-   abstract void show();
+    abstract void show();
 
-   abstract void recover_health();
+    abstract void recover_health();
 
-   abstract void recover_energy();
+    abstract void recover_energy();
 
 }

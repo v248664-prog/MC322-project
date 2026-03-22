@@ -3,7 +3,7 @@ import java.util.Random;
 public class Inimigo extends Entidade{
 
    String name = "NUKO";
-   int attack = 20;
+   int attack = 2;
    int defence = 10;
    int energy = 30;
    int health = 120;
@@ -61,18 +61,26 @@ public class Inimigo extends Entidade{
 
    public void decisão() {
       Random ram = new Random();
-      this.escolha = ram.nextInt(9);
-      if (escolha == 0) {
-         System.out.println("O inimigo se curou");
-      }
-      if (escolha == 1) {
-         System.out.println("O inimigo atacou");
+      int chance = ram.nextInt(10);
+
+      if (this.energy > 5) {
+         if (chance < 6) {
+            this.escolha = 1;
+            System.out.println("O inimigo se curou");
+         } else {
+            this.escolha = 0;
+            System.out.println("O inimigo atacou");
+         }
+      } 
+      else if (this.energy < 5) {
+         this.escolha = 2;
+         System.out.println("O inimigo recuperou energia");
       }
    }
 
    public void batalha(Heroi prota) {
       if (this.health_status_op()) {
-         if (this.energy > 0) {
+         if (this.energy > 5) {
             if (this.escolha == 0) {
                bite(prota);
             }

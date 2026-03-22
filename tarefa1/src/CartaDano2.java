@@ -27,7 +27,7 @@ public class CartaDano2 extends Carta{
 
          prota.energy -= 2;
 
-         op.receive_damage(30);
+         op.receive_damage(3);
 
          munition--;
 
