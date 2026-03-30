@@ -1,19 +1,43 @@
-abstract class Entidade {
+import java.util.ArrayList;
+import java.util.List;
 
-    String name;
-    int attack;
-    int defence;
-    int energy;
-    int health;
+public abstract class Entidade {
+    protected String name;
+    protected int attack;
+    protected int defence;
+    protected int energy;
+    protected int health;
+
+    protected List<Efeito> efeitos = new ArrayList<>();
 
     abstract void receive_damage(int dmg);
+    abstract void show();
+    abstract void recover_health();
+    abstract void receive_energy();
 
-   abstract void show();
+    public void removerEfeito(Efeito e) {
+        efeitos.remove(e);
+    }
 
-   abstract void recover_health();
-
-   abstract void receive_energy();
-
-
-   // metodos e atributos de importancia
+    public void aplicarEfeito(Efeito novoEfeito, Publisher jogo) {
+        for (Efeito e : efeitos) {
+            if (e.getClass().equals(novoEfeito.getClass())) {
+                e.adicionarAcumulos(novoEfeito.getAcumulos());
+                return;
+            }
+        }
+        efeitos.add(novoEfeito);
+        jogo.inscrever(novoEfeito);
+    }
+    
+    // 4. Método auxiliar para mostrar os efeitos no terminal
+    public void mostrarEfeitos() {
+        if (!efeitos.isEmpty()) {
+            System.out.print("Efeitos em " + this.name + ": ");
+            for (Efeito e : efeitos) {
+                System.out.print(e.getString() + " ");
+            }
+            System.out.println();
+        }
+    }
 }

@@ -1,12 +1,12 @@
 public class Heroi extends Entidade{
-
-   String name;
-   int attack = 0;
-   int defence = 0;
-   int energy = 30;
-   int health = 100;
    Carta[] mao = new Carta[7];
-   
+public Heroi() {
+        this.name = "Heroi"; 
+        this.attack = 0;     
+        this.defence = 0;    
+        this.energy = 30;    
+        this.health = 100;   
+}
    //atributos do heroi
 
    public boolean health_status() {

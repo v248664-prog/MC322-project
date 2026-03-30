@@ -5,148 +5,146 @@ import java.util.Collections;
 
 public class App {
 
-   public static void main(String[] args) {
+    public static void main(String[] args) {
 
-      System.out.println("");
-      System.out.println("An Adult Nuko is blocking the passage");
-      System.out.println("");
-      // o cenário inicial se mantem
+        System.out.println("");
+        System.out.println("An Adult Nuko is blocking the passage");
+        System.out.println("");
+        // o cenário inicial se mantem
 
-      Scanner scam = new Scanner(System.in);
+        Scanner scam = new Scanner(System.in);
 
-      Inimigo op = new Inimigo();
-      Heroi pt = new Heroi();
+        Inimigo op = new Inimigo();
+        Heroi pt = new Heroi();
 
-      ArrayList<Carta> pilhaCompra = new ArrayList<>();
-      ArrayList<Carta> mao = new ArrayList<>();
-      ArrayList<Carta> pilhaDescarte = new ArrayList<>();
-      //criação dos arrays
+        // 1. AQUI ENTRA O OBSERVER: Criando o publicador de eventos do jogo
+        Publisher jogo = new Publisher();
 
-      // Deck, sempre entre 40-60 lol
-      for (int i = 0; i < 20; i++) {
-         pilhaCompra.add(new CartaDano());
-      }
-      for (int i = 0; i < 20; i++) {
-         pilhaCompra.add(new CartaDano2());
-      }
-      for (int i = 0; i < 20; i++) {
-         pilhaCompra.add(new CartaEscudo());
-      }
+        ArrayList<Carta> pilhaCompra = new ArrayList<>();
+        ArrayList<Carta> mao = new ArrayList<>();
+        ArrayList<Carta> pilhaDescarte = new ArrayList<>();
+        //criação dos arrays
 
-      Collections.shuffle(pilhaCompra);
+        // Deck, sempre entre 40-60 lol
+        for (int i = 0; i < 15; i++) {
+            pilhaCompra.add(new CartaDano());
+        }
+        for (int i = 0; i < 15; i++) {
+            pilhaCompra.add(new CartaDano2()); // Lembre-se de colocar o Publisher no usar() desta tbm
+        }
+        for (int i = 0; i < 10; i++) {
+            pilhaCompra.add(new CartaEscudo());
+        }
+        for (int i = 0; i < 10; i++) {
+            pilhaCompra.add(new CartaVeneno());
+        }
+        for (int i = 0; i < 5; i++) {
+            pilhaCompra.add(new CartaRegeneracao());
+        }
 
-      for (int i = 0; i < 4; i++) {
+        Collections.shuffle(pilhaCompra);
+
+        for (int i = 0; i < 4; i++) {
             if (!pilhaCompra.isEmpty()) {
-               mao.add(pilhaCompra.remove(0));
+                mao.add(pilhaCompra.remove(0));
             }
-         }
-      //compra inicial
+        }
+        //compra inicial
 
-      while (op.health_status_op() && pt.health_status()) {
-        op.decisão();
+        while (op.health_status_op() && pt.health_status()) {
+            op.decisão();
 
-         System.out.println("\n=== SEU TURNO ===");
-         if (pilhaCompra.isEmpty()) {
-            pilhaCompra.addAll(pilhaDescarte);
-            pilhaDescarte.clear();
-            Collections.shuffle(pilhaCompra);
-         }
-         //manejamento do deck
-
-         int esc = 1;
-
-         //turno do heroi
-         while(pt.energy > 0 && !(esc == 0)) {
-            if (!pilhaCompra.isEmpty()) {
-               mao.add(pilhaCompra.remove(0));
-               // compra para manter em 4 sempre
+            System.out.println("\n=== SEU TURNO ===");
+            if (pilhaCompra.isEmpty()) {
+                pilhaCompra.addAll(pilhaDescarte);
+                pilhaDescarte.clear();
+                Collections.shuffle(pilhaCompra);
             }
-            System.out.println("");
-            pt.show();
-            //info dos status
-            System.out.println("");
-            for (int i = 0; i < mao.size(); i++) {
-               Carta c = mao.get(i);
-               System.out.print((i + 1) + "." + c.nome + "(Custo: " + c.custo + ")  ");
+            //manejamento do deck
+
+            int esc = 1;
+
+            //turno do heroi
+            while(pt.energy > 0 && !(esc == 0)) {
+                if (!pilhaCompra.isEmpty() && mao.size() < 4) { // Pequena trava p/ mao n crescer infinito
+                    mao.add(pilhaCompra.remove(0));
+                }
+                System.out.println("");
+                pt.show();
+                op.show(); 
+                System.out.println("");
+                
+                for (int i = 0; i < mao.size(); i++) {
+                    Carta c = mao.get(i);
+                    System.out.print((i + 1) + "." + c.nome + "(Custo: " + c.custo + ")  ");
+                }
+                System.out.print("\n0. Pular turno\n");
+
+                int choice = scam.nextInt();
+                esc = choice;
+                System.out.println("");
+
+                if (choice > 0 && choice <= mao.size()) {
+
+                    Carta cartaEscolhida = mao.remove(choice - 1);
+
+                    if (pt.energy >= cartaEscolhida.custo) {
+                        cartaEscolhida.usar(op, pt, jogo);
+                        pt.energy -= cartaEscolhida.custo;
+                        System.out.println("\n>>> Voce usou: " + cartaEscolhida.nome);
+                    } else {
+                        System.out.println("\n>>> Energia insuficiente!");
+                        mao.add(cartaEscolhida); // Devolve a carta pra mao se falhar
+                        continue; 
+                    }
+
+                    pilhaDescarte.add(cartaEscolhida);
+
+                } else if (choice == 0) {
+                    System.out.println("\n>>> Turno encerrado.");
+                } else {
+                    System.out.println("\n>>> Opcao invalida.");
+                }
             }
-            //cartas
-            System.out.print("0. Pular turno");
-            //importante
-            System.out.println("");
 
-            int choice = scam.nextInt();
-            esc = choice;
-            // gambiarra
-            System.out.println("");
+            System.out.println("\n--- PROCESSANDO EFEITOS DE FIM DE TURNO ---");
+            jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
 
-            if (choice > 0 && choice <= mao.size()) {
+            pilhaDescarte.addAll(mao);
+            mao.clear();
 
-               Carta cartaEscolhida = mao.remove(choice - 1);
-               // sistema de cemiterio
-
-               if (pt.energy >= cartaEscolhida.custo) {
-                  cartaEscolhida.usar(op, pt);
-                  // uso do escolhido
-                  pt.energy -= cartaEscolhida.custo;
-                  // gasto
-                  System.out.println("\n>>> Voce usou: " + cartaEscolhida.nome);
-               } else {
-                  System.out.println("\n>>> Energia insuficiente!");
-               }
-
-               pilhaDescarte.add(cartaEscolhida);
-               //recebimento da carta
-
-            } else if (choice == 0) {
-               System.out.println("\n>>> Turno encerrado.");
-            } else {
-               System.out.println("\n>>> Opcao invalida.");
+            for (int i = 0; i < 4; i++) {
+                if (!pilhaCompra.isEmpty()) {
+                    mao.add(pilhaCompra.remove(0));
+                }
             }
-            System.out.println("");
-            op.show();
-            // como acoes repetem(noçao de dano e tals);
-            System.out.println("");
 
-         }
-
-         pilhaDescarte.addAll(mao);
-         mao.clear();
-
-         for (int i = 0; i < 4; i++) {
-            if (!pilhaCompra.isEmpty()) {
-               mao.add(pilhaCompra.remove(0));
+            if (op.health_status_op()) {
+                System.out.println("\n=== TURNO DO INIMIGO ===");
+                // 3. INJEÇÃO DE DEPENDÊNCIA: Inimigo também precisa do jogo para aplicar veneno
+                op.batalha(pt, jogo);
             }
-         }
 
-         if (op.health_status_op()) {
-            System.out.println("\n=== TURNO DO INIMIGO ===");
-            op.batalha(pt);
-         }
-
-         pt.show();
-         System.out.println("");
-
-         for (Carta c : pilhaDescarte) {
-            if (c instanceof CartaEscudo) {
-               CartaEscudo escudo = (CartaEscudo) c;
-               if (escudo.tryed) {
-                  escudo.ending_bonus(pt);
-               }
+            for (Carta c : pilhaDescarte) {
+                if (c instanceof CartaEscudo) {
+                    CartaEscudo escudo = (CartaEscudo) c;
+                    if (escudo.tryed) {
+                        escudo.ending_bonus(pt);
+                    }
+                }
             }
-         }
-         // garante que cada instancia de hide vai ser revertida, talvez
-         // isso resulte na mudança dos valores de hide
-         pt.receive_energy();
-         op.receive_energy();
-        System.out.println();
-      }
+            
+            pt.receive_energy();
+            op.receive_energy();
+            System.out.println();
+        }
 
-      if (op.health_status_op()) {
-         System.out.println("\nYou shouldn't have started a battle you couldn't win");
-      } else {
-         System.out.println("\nThe Nuko ran away");
-      }
+        if (op.health_status_op()) {
+            System.out.println("\nYou shouldn't have started a battle you couldn't win");
+        } else {
+            System.out.println("\nThe Nuko ran away");
+        }
 
-      scam.close();
-   }
+        scam.close();
+    }
 }

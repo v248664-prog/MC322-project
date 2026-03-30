@@ -9,7 +9,5 @@ public abstract class Carta {
         this.custo = custo;
     }
 
-    public abstract void usar(Inimigo op, Heroi prota);
-
-    //atributos e metodos de importancia
+    public abstract void usar(Inimigo op, Heroi prota, Publisher jogo);
 }
