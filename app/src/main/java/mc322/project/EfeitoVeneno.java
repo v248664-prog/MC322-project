@@ -8,6 +8,7 @@ public class EfeitoVeneno extends Efeito {
      */
     public EfeitoVeneno(Entidade dono, int acumulos, int dano) {
         super("Veneno", dono, acumulos, dano);
+        //jfi
     }
 
     /**
