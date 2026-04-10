@@ -2,19 +2,31 @@ package mc322.project;
 import java.util.Random;
 
 /**
- * aumenta a defesa permanentemente
+ * Aumenta a defesa permanentemente.
  */
 public class CartaEscudo2 extends Carta {
 
+    /**
+     * Construtor da carta.
+     */
     public CartaEscudo2() {
-        super("armadura", "", 30);
+        super("Armadura", "", 30);
     }
 
-    // Adicionado o parâmetro Publisher jogo
+    /**
+     * Executa o efeito da carta.
+     * 
+     * @param prota herói que receberá o bônus.
+     */
     public void usar(Inimigo op, Heroi prota, Publisher jogo) {
         this.find_armor(prota);
     }
 
+    /**
+     * Aplica um aumento permanente de defesa baseado em sorte.
+     * 
+     * @param prota herói que receberá o bônus.
+     */
     public void find_armor(Heroi prota) {
         Random ram = new Random();
         int num = ram.nextInt(4);

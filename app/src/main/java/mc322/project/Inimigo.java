@@ -1,14 +1,17 @@
 package mc322.project;
 import java.util.Random;
 
+/**
+ * Classe que representa o inimigo do jogo.
+ */
 public class Inimigo extends Entidade {
 
     int escolha;
 
     /**
-     * atributos básicos estabelecidos pela classe abstrata
-     * Entidade
-     */
+    * Construtor do herói.
+    * Inicializa os atributos base como vida, energia e defesa.
+    */
     public Inimigo() {
         this.name = "NUKO";
         this.attack = 30;
@@ -18,17 +21,19 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * ele funciona como um sistema simples para
-     * organizar o combate, se estiver vivo continua,
-     * se não, ele encerrar
-     */
+    * Verifica se o herói ainda está vivo.
+    * 
+    * @return true se a vida for maior que zero, false caso contrário.
+    */
     public boolean health_status_op() {
         return this.health > 0;
     }
 
     /**
-     * ataque básico do oponente
-     */
+    * Realiza um ataque direto ao herói.
+     * 
+    * @param prota herói que receberá o dano.
+    */
     public void bite(Heroi prota) {
         this.energy -= 5;
         prota.receive_damage(this.attack);
@@ -39,9 +44,11 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * surpriendentemente, esse ataque até que faz muito sentido
-     * lol, dado que é meio que um ser parecido com um cogumelo
-     */
+    * Aplica o efeito de veneno no herói.
+    * 
+    * @param prota herói afetado.
+    * @param jogo sistema de eventos.
+    */
     public void aplicarVenenoNoHeroi(Heroi prota, Publisher jogo) {
         this.energy -= 10; // Custa 10 de energia para o inimigo
         EfeitoVeneno veneno = new EfeitoVeneno(prota, 2, 10); // Aplica 2 acúmulos
@@ -49,8 +56,10 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * Sistema de dano básico
-     */
+    * Aplica dano ao inimigo considerando sua defesa.
+    * 
+    * @param dmg dano recebido.
+    */
     public void receive_damage(int dmg) {
         this.health -= (int) (dmg * ((100.0 - this.defence) / 100.0));
 
@@ -60,10 +69,8 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * uma das primeiras funções criadas
-     * inclusive, acho que a primeira ação
-     * cura do oponente
-     */
+    * Recupera uma quantidade fixa de vida do inimigo.
+    */
     public void recover_health() {
         this.energy -= 5;
         this.health += 60;
@@ -74,39 +81,28 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * recarrega a energia do oponente
-     */
-    public void recover_energy() {
-        this.energy = 30;
-    }
-
-    /**
-     * mostra a vida dele, por questões de jogabilidade
-     * mas, pessoalmente, eu acho interessante a ideia de não saber
-     * mesmo que isso não seja implementado
-     */
+    * Exibe o estado atual do inimigo no terminal.
+    */
     public void show() {
         System.out.println("                                               NUKO's health: " + this.health);
         this.mostrarEfeitos();
     }
 
     /**
-     * recarrega a energia do oponente
-     */
+    * Restaura a energia do inimigo ao início de um novo turno.
+    */
     public void receive_energy() {
         this.energy = 30;
     }
 
     /**
-     * sistema de decisão do ponto extra
-     * o sistema de decisão foi construido com random
-     * por ser simplesmente mais prático, eu posso aplicar
-     * 'ponderadas' de forma a dar mais chance ou menos chance
-     * sem perder muito temp tentando desenvolver estratégias
-     * para cada inimigo
-     * 
-     * aqui, ele pode se curar, atacar ou envenenar o heroi
-     */
+    * Define a ação que o inimigo irá executar no turno.
+    * 
+    * A decisão é baseada em um valor aleatório, podendo resultar em:
+    * - Ataque direto;
+    * - Aplicação de veneno;
+    * - Recuperação de vida.
+    */
     public void decisão() {
         Random ram = new Random();
         int chance = ram.nextInt(10);
@@ -126,10 +122,11 @@ public class Inimigo extends Entidade {
     }
 
     /**
-     * a concretização do sistema de decisão
-     * a decisão é declarada primero para, no
-     * final do turno do heroi ser executada
-     */
+    * Executa a ação previamente escolhida pelo inimigo.
+    * 
+    * @param prota herói alvo das ações
+    * @param jogo sistema de eventos para aplicação de efeitos
+    */
     public void batalha(Heroi prota, Publisher jogo) {
         if (this.health_status_op()) {
             if (this.escolha == 0) {
@@ -146,9 +143,9 @@ public class Inimigo extends Entidade {
         }
     }
 
-    /**
-     * desenho do inimigo
-     */
+   /**
+    * Exibe a representação ASCII do inimigo.
+    */
     public void ASCII() {
       System.out.println("                                      _____       ___________");
         System.out.println("                                ____/    /    /    \\     \\  \\_____");

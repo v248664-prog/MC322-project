@@ -1,15 +1,22 @@
 package mc322.project;
 public class CartaQueimadura extends Carta {
 
+    /**
+    * Carta que aplica o efeito de queimadura.
+    */
     public CartaQueimadura() {
         /**
-         * construtor
-         */
+        * Construtor da carta.
+        */
         super("Lança-chamas", "Aplica 3 acumulos de queimadura no inimigo", 15);
     }
 
     /**
-     * usa contra o inimigo
+     * Executa o efeito da carta, aplicando queimadura no inimigo.
+     * 
+     * @param op inimigo que receberá o efeito.
+     * @param prota herói que utiliza a carta.
+     * @param jogo sistema de eventos do jogo.
      */
     public void usar(Inimigo op, Heroi prota, Publisher jogo) {
         if (prota.energy >= this.custo) {

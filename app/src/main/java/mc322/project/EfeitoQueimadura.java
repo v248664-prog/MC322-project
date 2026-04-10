@@ -1,17 +1,19 @@
 package mc322.project;
 /**
- * dano periódico
+ * Efeito que causa dano ao longo do tempo.
  */
 public class EfeitoQueimadura extends Efeito{
     /**
-     * construtor do efeito
+     * Construtor do efeito.
      */
     public EfeitoQueimadura(Entidade dono, int acumulos, int dano) {
         super("Queimadura", dono, acumulos, dano);
     }
 
     /**
-     * notifica os subs quando o evento de fim de turno ocorre
+     * Método chamado quando um evento do jogo ocorre.
+     * @param evento tipo de evento ocorrido.
+     * @param contexto objeto associado ao evento (Publisher).
      */
     public void serNotificado(String evento, Object contexto) {
         if (evento.equals(Publisher.EVENTO_FIM_TURNO)) {
@@ -19,9 +21,6 @@ public class EfeitoQueimadura extends Efeito{
             dono.health -= dano;
             this.acumulos--;
 
-            /**
-             * retira o efeito
-             */
             if (this.acumulos <= 0) {
                 dono.removerEfeito(this);
                 if (contexto instanceof Publisher) {

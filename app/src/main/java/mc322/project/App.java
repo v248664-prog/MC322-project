@@ -3,10 +3,24 @@ package mc322.project;
 import java.util.Scanner;
 import java.util.ArrayList;     
 import java.util.Collections;
-
+/**
+ * Classe principal do jogo.
+ * 
+ * Responsável por iniciar o sistema de combate, gerenciar o loop principal
+ * do jogo e controlar as interações entre herói, inimigo e cartas.
+ * 
+ * O jogo funciona em turnos, onde:
+ * - O jogador compra cartas e pode utilizá-las enquanto tiver energia;
+ * - O inimigo executa suas ações automaticamente;
+ * - Efeitos ativos são processados ao final de cada turno.
+ * - Gerenciamento de baralho (compra, descarte e embaralhamento);
+ * - Controle de energia e fluxo de combate.
+ */
 public class App {
-
-    public static void main(String[] args) {
+/**
+ * Método que inicia o jogo.
+ * @param args
+ */    public static void main(String[] args) {
 
         System.out.println("                                         Um Nuko está bloqueando a passagem");
         // o cenário inicial se mantem
@@ -142,7 +156,7 @@ public class App {
             for (Carta c : pilhaDescarte) {
                 if (c instanceof CartaEscudo) {
                     CartaEscudo escudo = (CartaEscudo) c;
-                    if (escudo.tryed) {
+                    if (escudo.tried) {
                         escudo.ending_bonus(pt);
                     }
                 }

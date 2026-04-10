@@ -1,18 +1,20 @@
 package mc322.project;
 /**
- * cura periódica
+ * Efeito que causa cura ao longo do tempo.
  */
 // dano foi usado para simplicar o código
 public class EfeitoRegeneracao extends Efeito {
     /**
-     * construtor do efeito
+     * Construtor do efeito.
      */
     public EfeitoRegeneracao(Entidade dono, int acumulos, int dano) {
         super("Regeneracao", dono, acumulos, dano);
     }
 
     /**
-     * notifica os subs quando o evento de fim de turno ocorre
+     * Método chamado quando um evento do jogo ocorre.
+     * @param evento tipo de evento ocorrido.
+     * @param contexto objeto associado ao evento (Publisher).
      */
     public void serNotificado(String evento, Object contexto) {
         if (evento.equals(Publisher.EVENTO_FIM_TURNO)) {
@@ -25,9 +27,6 @@ public class EfeitoRegeneracao extends Efeito {
             
             this.acumulos--;
 
-            /**
-             * retira o efeito
-             */
             if (this.acumulos <= 0) {
                 dono.removerEfeito(this);
                 if (contexto instanceof Publisher) {

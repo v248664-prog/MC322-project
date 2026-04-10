@@ -1,8 +1,9 @@
 package mc322.project;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- *declara os atributos, listas e métodos básicos
+ * Classe abstrata que representa uma entidade do jogo.
  */
 public abstract class Entidade {
     protected String name;
@@ -19,14 +20,18 @@ public abstract class Entidade {
     abstract void ASCII();
 
     /**
-     * remove os efeitos
+     * Remove um efeito da entidade.
+     * 
+     * @param e efeito a ser removido.
      */
     public void removerEfeito(Efeito e) {
         efeitos.remove(e);
     }
 
     /**
-     * aplica os eventos
+     * Aplica um novo efeito à entidade. 
+     * @param novoEfeito efeito a ser aplicado.
+     * @param jogo sistema de eventos (Publisher).
      */
     public void aplicarEfeito(Efeito novoEfeito, Publisher jogo) {
         for (Efeito e : efeitos) {
@@ -41,7 +46,7 @@ public abstract class Entidade {
     
 
     /**
-     * mostra os eventos no terminal
+     * Exibe todos os efeitos ativos da entidade no terminal.
      */
     public void mostrarEfeitos() {
         if (!efeitos.isEmpty()) {

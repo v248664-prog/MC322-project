@@ -1,15 +1,21 @@
 package mc322.project;
 public class CartaVeneno extends Carta {
-    
+    /**
+    * Carta que aplica o efeito de veneno.
+    */
     public CartaVeneno() {
         /**
-         * construtor
-         */
+        * Construtor da carta.
+        */
         super("Bomba de Gás", "Aplica 3 acumulos de veneno no inimigo", 15);
     }
 
     /**
-     * usa contra o inimigo
+     * Executa o efeito da carta, aplicando queimadura no inimigo.
+     * 
+     * @param op inimigo que receberá o efeito.
+     * @param prota herói que utiliza a carta.
+     * @param jogo sistema de eventos do jogo.
      */
     public void usar(Inimigo op, Heroi prota, Publisher jogo) {
         if (prota.energy >= this.custo) {
