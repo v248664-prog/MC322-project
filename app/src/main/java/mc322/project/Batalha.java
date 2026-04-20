@@ -32,7 +32,7 @@ public class Batalha {
         ArrayList<Carta> pilhaDescarte = new ArrayList<>();
         //criação dos arrays
 
-        // Deck, sempre entre 40-60 lol
+        // Deck, sempre entre 40-60 lol, lembre de fazer a classe do deck
         for (int i = 0; i < 5; i++) {
             pilhaCompra.add(new CartaDano());
         }
