@@ -10,21 +10,15 @@ O projeto implementa um sistema com heróis, inimigos e cartas que aplicam efeit
 
 Compilar:
 
-```
 ./gradlew build
-```
 
 Executar:
 
-```
 ./gradlew run
-```
 
 Rodar testes:
 
-```
 ./gradlew test
-```
 
 ## Estrutura
 
@@ -56,9 +50,7 @@ Rodar testes:
 
 Testes ficam em:
 
-```
 test/java/mc322/project/
-```
 
 ## Observações
 
