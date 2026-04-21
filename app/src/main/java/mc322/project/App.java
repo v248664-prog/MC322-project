@@ -16,7 +16,7 @@ public class App {
         Heroi pt = new Heroi();
 
         //novo while do jogo
-        while (pt.health_status()) {
+        while (pt.health_status() && !mapa.acabou()) {
             Batalha batalha = mapa.mover();
             batalha.luta(pt, scan);
         }
@@ -33,8 +33,8 @@ public class App {
 .                              .                                          .                  
                           .                       FIM                    .                         
                     __
-                   \\ __| 
-   .      .             \\|____                                                           
+                    \\ __| 
+   .      .            \\|____                                                           
 .                        | \\_____                       .                          .       
                          |     \\____
 .           .            |       __ \\__

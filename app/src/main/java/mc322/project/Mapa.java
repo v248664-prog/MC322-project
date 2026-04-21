@@ -15,6 +15,7 @@ public class Mapa {
     private DefaultMutableTreeNode raiz;
     private DefaultMutableTreeNode atual;
     private Scanner scan = new Scanner(System.in);
+    private boolean fim = false;
 
     /**
      * Construtor
@@ -71,6 +72,7 @@ public class Mapa {
 
         if (atual.getChildCount() == 0) {
             System.out.println("Ultima batalha");
+            fim = true;
             return batalha;
         }
 
@@ -83,5 +85,9 @@ public class Mapa {
     int esc = scan.nextInt();
     atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
     return batalha;
+    }
+
+    public boolean acabou() {
+    return fim;
     }
 }
