@@ -9,6 +9,7 @@ import java.util.Collections;
  */
 public class Batalha {
     int num;
+    boolean visit;
 
     public Batalha(int num) {
         this.num = num;
@@ -165,6 +166,7 @@ public class Batalha {
         } else {
             System.out.println("\nO Nuko desapareceu");
         }
+        this.visit = true;
 
     }
 }

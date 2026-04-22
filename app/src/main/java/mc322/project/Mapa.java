@@ -40,6 +40,8 @@ public class Mapa {
      * @param h
      * @return
      */
+
+
     public DefaultMutableTreeNode criar_arvore(int h) {
 
         if (h == 0) {
@@ -66,28 +68,58 @@ public class Mapa {
      * Move o jogador no mapa
      * @return
      */
+
+    private int getId(DefaultMutableTreeNode no) {
+        return ((Batalha) no.getUserObject()).num;
+    }
+
+    private boolean visitado(DefaultMutableTreeNode no) {
+        return ((Batalha) no.getUserObject()).visit;
+    }
+
     public Batalha mover() {
-        
+
         Batalha batalha = (Batalha) atual.getUserObject();
 
+        DefaultMutableTreeNode pri = raiz;
+
+        System.out.println("---------Mapa---------");
+
+        while(pri != atual) {
+            System.out.println(getId(pri));
+            System.out.println("|");
+            System.out.println("|");
+            DefaultMutableTreeNode esq = (DefaultMutableTreeNode) pri.getChildAt(0);
+            DefaultMutableTreeNode dir = (DefaultMutableTreeNode) pri.getChildAt(1);
+
+            if(visitado(esq)) {
+                pri = esq;
+            }
+            else {
+                pri = dir;
+            }
+        }
+
+        System.out.println(getId(atual));
+        System.out.println("|--------|");
+        System.out.println("|        |");
+        DefaultMutableTreeNode esq = (DefaultMutableTreeNode) atual.getChildAt(0);
+        DefaultMutableTreeNode dir = (DefaultMutableTreeNode) atual.getChildAt(1);
+        System.out.println(getId(esq) + "        " + getId(dir));
+        System.out.println("\nEscolha: 0 (esquerda) e 1 (direita)");
+        int esc = scan.nextInt();
+        atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
+
         if (atual.getChildCount() == 0) {
-            System.out.println("Ultima batalha");
+            System.out.println("\nUltima batalha");
             fim = true;
             return batalha;
         }
 
-        System.out.println("---------Escolha um caminho---------");
-
-        for (int i = 0; i < atual.getChildCount(); i++) {
-            System.out.println("OPÇÃO : " + i);
-    }
-    
-    int esc = scan.nextInt();
-    atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
-    return batalha;
+        return (Batalha) atual.getUserObject();
     }
 
     public boolean acabou() {
-    return fim;
+        return fim;
     }
 }
