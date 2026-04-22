@@ -103,10 +103,13 @@ public class Mapa {
         System.out.println(getId(atual));
         System.out.println("|--------|");
         System.out.println("|        |");
+
         DefaultMutableTreeNode esq = (DefaultMutableTreeNode) atual.getChildAt(0);
         DefaultMutableTreeNode dir = (DefaultMutableTreeNode) atual.getChildAt(1);
+
         System.out.println(getId(esq) + "        " + getId(dir));
         System.out.println("\nEscolha: 0 (esquerda) e 1 (direita)");
+        
         int esc = scan.nextInt();
         atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
 
