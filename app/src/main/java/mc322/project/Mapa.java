@@ -84,6 +84,8 @@ public class Mapa {
         DefaultMutableTreeNode pri = raiz;
 
         System.out.println("---------Mapa---------");
+        //efihifjiwf
+        //fokorjgijrgj
 
         while(pri != atual) {
             System.out.println(getId(pri));
@@ -109,7 +111,7 @@ public class Mapa {
 
         System.out.println(getId(esq) + "        " + getId(dir));
         System.out.println("\nEscolha: 0 (esquerda) e 1 (direita)");
-        
+
         int esc = scan.nextInt();
         atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
 
