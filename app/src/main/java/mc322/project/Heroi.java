@@ -3,19 +3,25 @@ package mc322.project;
 * Classe que representa o herói controlado pelo jogador.
 */
 public class Heroi extends Entidade{
-   Carta[] mao = new Carta[7];
+   
+   private Mao mao;
 
    /**
     * Construtor do herói.
     * Inicializa os atributos base como vida, energia e defesa.
     */
-   public Heroi() {
+   public Heroi(Mao mao) {
         this.name = "Heroi"; 
         this.attack = 0;     
         this.defence = 0;    
         this.energy = 30;    
-        this.health = 100;   
+        this.health = 100;
+        this.mao = new Mao();   
    }
+
+   public Mao getMao() {
+        return mao;
+    }
 
    /**
     * Verifica se o herói ainda está vivo.

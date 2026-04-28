@@ -16,7 +16,8 @@ public class BatalhaTest {
     @Test
     public void batalha_fluxo_pular_turnos_ate_fim_combate() {
         Batalha batalha = new Batalha(1);
-        Heroi heroi = new Heroi();
+        Mao mao = new Mao();
+        Heroi heroi = new Heroi(mao);
         
         String inputsSimulados = "0\n".repeat(100);
         Scanner scan = new Scanner(inputsSimulados);
@@ -32,7 +33,8 @@ public class BatalhaTest {
     @Test
     public void batalha_fluxo_jogar_primeira_carta() {
         Batalha batalha = new Batalha(1);
-        Heroi heroi = new Heroi();
+        Mao mao = new Mao();
+        Heroi heroi = new Heroi(mao);
         
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < 100; i++) {

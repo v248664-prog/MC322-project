@@ -13,7 +13,8 @@ public class App {
         Scanner scan = new Scanner(System.in);
         Mapa mapa = new Mapa(scan);
         mapa.gerar_mapa();
-        Heroi pt = new Heroi();
+        Mao mao = new Mao();
+        Heroi pt = new Heroi(mao);
 
         //novo while do jogo
         while (pt.health_status() && !mapa.acabou()) {
@@ -46,7 +47,7 @@ public class App {
  ___ / ________          |                                               |      |             
 /          
 
-|
+
         """);
         }
         scan.close();

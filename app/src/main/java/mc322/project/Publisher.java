@@ -40,4 +40,8 @@ public class Publisher {
             s.serNotificado(evento, contexto);
         }
     }
+
+    public void fim_de_jogo() {
+        subscribers.clear();
+    }
 }

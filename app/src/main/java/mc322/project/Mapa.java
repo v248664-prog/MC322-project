@@ -110,9 +110,11 @@ public class Mapa {
         DefaultMutableTreeNode dir = (DefaultMutableTreeNode) atual.getChildAt(1);
 
         System.out.println(getId(esq) + "        " + getId(dir));
-        System.out.println("\nEscolha: 0 (esquerda) e 1 (direita)");
+        System.out.println("\nEscolha: 1 (esquerda) e 0 (direita)");
 
         int esc = scan.nextInt();
+        if (esc == 0) esc = 1;
+        if (esc == 1) esc = 0;
         atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
 
         if (atual.getChildCount() == 0) {

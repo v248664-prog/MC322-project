@@ -9,7 +9,8 @@ public class EfeitoTest {
 
     @Test
     public void veneno_causa_dano_no_fim_do_turno() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         EfeitoVeneno veneno = new EfeitoVeneno(h, 2, 10);
         jogo.inscrever(veneno);
@@ -21,7 +22,8 @@ public class EfeitoTest {
 
     @Test
     public void veneno_decrementa_acumulos() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         EfeitoVeneno veneno = new EfeitoVeneno(h, 2, 10);
         jogo.inscrever(veneno);
@@ -33,7 +35,8 @@ public class EfeitoTest {
 
     @Test
     public void veneno_remove_efeito_quando_acumulos_zerados() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         EfeitoVeneno veneno = new EfeitoVeneno(h, 1, 10);
         jogo.inscrever(veneno);
@@ -45,7 +48,8 @@ public class EfeitoTest {
 
     @Test
     public void veneno_causa_dano_multiplos_turnos() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         EfeitoVeneno veneno = new EfeitoVeneno(h, 2, 10);
         jogo.inscrever(veneno);
@@ -60,7 +64,8 @@ public class EfeitoTest {
 
     @Test
     public void regeneracao_cura_no_fim_do_turno() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         h.health = 80;
         Publisher jogo = new Publisher();
         EfeitoRegeneracao regen = new EfeitoRegeneracao(h, 2, 15);
@@ -73,7 +78,8 @@ public class EfeitoTest {
 
     @Test
     public void regeneracao_nao_passa_de_100() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         h.health = 99;
         Publisher jogo = new Publisher();
         EfeitoRegeneracao regen = new EfeitoRegeneracao(h, 2, 15);
@@ -86,7 +92,8 @@ public class EfeitoTest {
 
     @Test
     public void regeneracao_decrementa_acumulos() {
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         EfeitoRegeneracao regen = new EfeitoRegeneracao(h, 2, 15);
         jogo.inscrever(regen);
@@ -139,7 +146,8 @@ public class EfeitoTest {
     @Test
     public void cartaQueimadura_aplica_efeito_no_inimigo() {
         Inimigo op = new Inimigo();
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         Publisher jogo = new Publisher();
         CartaQueimadura carta = new CartaQueimadura();
         h.energy = 30;

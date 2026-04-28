@@ -8,7 +8,8 @@ public class PublisherTest {
     @Test
     public void publisher_inscreve_subscriber() {
         Publisher jogo = new Publisher();
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         EfeitoVeneno veneno = new EfeitoVeneno(h, 2, 10);
         jogo.inscrever(veneno);
         jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
@@ -18,7 +19,8 @@ public class PublisherTest {
     @Test
     public void publisher_nao_inscreve_duplicado() {
         Publisher jogo = new Publisher();
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         EfeitoVeneno veneno = new EfeitoVeneno(h, 3, 10);
         jogo.inscrever(veneno);
         jogo.inscrever(veneno);
@@ -29,7 +31,8 @@ public class PublisherTest {
     @Test
     public void publisher_desinscreve_subscriber() {
         Publisher jogo = new Publisher();
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         EfeitoVeneno veneno = new EfeitoVeneno(h, 2, 10);
         jogo.inscrever(veneno);
         jogo.desinscrever(veneno);
@@ -40,7 +43,8 @@ public class PublisherTest {
     @Test
     public void publisher_notifica_multiplos_subscribers() {
         Publisher jogo = new Publisher();
-        Heroi h = new Heroi();
+        Mao mao = new Mao();
+        Heroi h = new Heroi(mao);
         h.health = 50;
         EfeitoVeneno veneno1 = new EfeitoVeneno(h, 2, 10);
         EfeitoVeneno veneno2 = new EfeitoVeneno(h, 2, 5);
