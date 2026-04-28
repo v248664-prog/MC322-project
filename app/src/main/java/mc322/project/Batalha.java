@@ -83,11 +83,11 @@ public class Batalha extends Eventos{
                 // 3. INJEÇÃO DE DEPENDÊNCIA: Inimigo também precisa do jogo para aplicar veneno
                 op.batalha(pt, jogo);
             }
-            jogo.fim_de_jogo();
             
             pt.receive_energy();
             op.receive_energy();
         }
+        jogo.fim_de_jogo();
 
         if (op.health_status_op()) {
             System.out.println("\nVOcẽ não deveria ter começado essa batalha");
