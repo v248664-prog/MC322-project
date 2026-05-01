@@ -21,7 +21,7 @@ public class CartaDano4 extends Carta {
      * Aplica dano fixo ao inimigo
      */
     public void shoot(Inimigo op, Heroi prota) {
-        op.receive_damage(60);
+        op.receive_damage(100);
         System.out.println(">>> Voce atirou e causou 50 de dano!");
     }
 }

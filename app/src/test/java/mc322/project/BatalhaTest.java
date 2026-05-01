@@ -17,13 +17,14 @@ public class BatalhaTest {
     public void batalha_fluxo_pular_turnos_ate_fim_combate() {
         Batalha batalha = new Batalha(1);
         Mao mao = new Mao();
-        Heroi heroi = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi heroi = new Heroi(mao, bar);
         
         String inputsSimulados = "0\n".repeat(100);
         Scanner scan = new Scanner(inputsSimulados);
 
         try {
-            batalha.luta(heroi, scan);
+            batalha.iniciar(heroi, scan, bar);
         } catch (NoSuchElementException e) {
         }
 
@@ -34,7 +35,8 @@ public class BatalhaTest {
     public void batalha_fluxo_jogar_primeira_carta() {
         Batalha batalha = new Batalha(1);
         Mao mao = new Mao();
-        Heroi heroi = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi heroi = new Heroi(mao, bar);
         
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < 100; i++) {
@@ -43,7 +45,7 @@ public class BatalhaTest {
         Scanner scan = new Scanner(sb.toString());
 
         try {
-            batalha.luta(heroi, scan);
+            batalha.iniciar(heroi, scan, bar);
         } catch (NoSuchElementException e) {
         }
 

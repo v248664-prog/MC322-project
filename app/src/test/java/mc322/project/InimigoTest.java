@@ -80,7 +80,8 @@ public class InimigoTest {
     public void bite_causa_dano_no_heroi() {
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         // attack = 30, heroi defence = 0
         // dano real = 30
         op.bite(h);
@@ -91,7 +92,8 @@ public class InimigoTest {
     public void bite_gasta_energia_do_inimigo() {
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         op.energy = 30;
         op.bite(h);
         assertEquals(25, op.energy);
@@ -101,7 +103,8 @@ public class InimigoTest {
     public void bite_nao_deixa_heroi_com_vida_negativa() {
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.health = 1;
         op.bite(h); // ataque de 30 > 1 de vida
         assertEquals(0, h.health);

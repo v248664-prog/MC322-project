@@ -9,19 +9,19 @@ public class Inimigo extends Entidade {
     int escolha;
 
     /**
-    * Construtor do herói.
+    * Construtor do inimigo.
     * Inicializa os atributos base como vida, energia e defesa.
     */
     public Inimigo() {
         this.name = "NUKO";
-        this.attack = 30;
-        this.defence = 10;
+        this.attack = 20;
+        this.defence = 0;
         this.energy = 30;
-        this.health = 360;
+        this.health = 160;
     }
 
     /**
-    * Verifica se o herói ainda está vivo.
+    * Verifica se o inimigo ainda está vivo.
     * 
     * @return true se a vida for maior que zero, false caso contrário.
     */

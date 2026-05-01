@@ -10,7 +10,7 @@ public class CartaEscudo2 extends Carta {
      * Construtor da carta.
      */
     public CartaEscudo2() {
-        super("Armadura", "", 30);
+        super("Armadura", "", 15);
     }
 
     /**

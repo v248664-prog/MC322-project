@@ -30,7 +30,7 @@ public class Mapa {
      */
     public void gerar_mapa() {
         Random ram = new Random();
-        int h = ram.nextInt(2) + 2;
+        int h = ram.nextInt(6) + 2;
         raiz = criar_arvore(h);
         atual = raiz;
         }
@@ -48,7 +48,8 @@ public class Mapa {
             return null;
         }
 
-        DefaultMutableTreeNode no = new DefaultMutableTreeNode(new Batalha(qnt++));
+        No n = new No();
+        DefaultMutableTreeNode no = new DefaultMutableTreeNode(n.gerarEvento(qnt++));
 
         DefaultMutableTreeNode esq = criar_arvore(h-1);
         DefaultMutableTreeNode dir = criar_arvore(h-1);
@@ -70,16 +71,16 @@ public class Mapa {
      */
 
     private int getId(DefaultMutableTreeNode no) {
-        return ((Batalha) no.getUserObject()).num;
+        return ((Eventos) no.getUserObject()).getId();
     }
 
     private boolean visitado(DefaultMutableTreeNode no) {
-        return ((Batalha) no.getUserObject()).visit;
+        return ((Eventos) no.getUserObject()).isVisitado();
     }
 
-    public Batalha mover() {
+    public Eventos mover() {
 
-        Batalha batalha = (Batalha) atual.getUserObject();
+        Eventos ev = (Eventos) atual.getUserObject();
 
         DefaultMutableTreeNode pri = raiz;
 
@@ -118,12 +119,11 @@ public class Mapa {
         atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
 
         if (atual.getChildCount() == 0) {
-            System.out.println("\nUltima batalha");
             fim = true;
-            return batalha;
+            return ev;
         }
 
-        return (Batalha) atual.getUserObject();
+        return (Eventos) atual.getUserObject();
     }
 
     public boolean acabou() {

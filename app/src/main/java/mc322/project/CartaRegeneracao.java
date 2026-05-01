@@ -18,7 +18,7 @@ public class CartaRegeneracao extends Carta {
      */
     public void usar(Inimigo op, Heroi prota, Publisher jogo) {
         if (prota.energy >= this.custo) {
-            EfeitoRegeneracao regen = new EfeitoRegeneracao(prota, 2, 15);
+            EfeitoRegeneracao regen = new EfeitoRegeneracao(prota, 2, 20);
             prota.aplicarEfeito(regen, jogo);
             System.out.println(">>> Voce aplicou Regeneracao em si mesmo!");
         }

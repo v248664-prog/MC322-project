@@ -10,7 +10,8 @@ public class CartaTest {
         CartaDano2 carta = new CartaDano2();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
         assertEquals(324, op.health);
     }
@@ -20,7 +21,8 @@ public class CartaTest {
         CartaDano2 carta = new CartaDano2();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
         assertEquals(324, op.health);
@@ -31,7 +33,8 @@ public class CartaTest {
         CartaDano3 carta = new CartaDano3();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
         assertEquals(333, op.health);
     }
@@ -41,7 +44,8 @@ public class CartaTest {
         CartaDano3 carta = new CartaDano3();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
         assertEquals(333, op.health);
@@ -52,7 +56,8 @@ public class CartaTest {
         CartaDano4 carta = new CartaDano4();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
         assertEquals(306, op.health);
     }
@@ -62,7 +67,8 @@ public class CartaTest {
         CartaDano4 carta = new CartaDano4();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
         assertEquals(306, op.health);
@@ -73,7 +79,8 @@ public class CartaTest {
         CartaDano5 carta = new CartaDano5();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
         assertEquals(333, op.health);
     }
@@ -83,7 +90,8 @@ public class CartaTest {
         CartaDano5 carta = new CartaDano5();
         Inimigo op = new Inimigo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
         assertEquals(333, op.health);
@@ -93,7 +101,8 @@ public class CartaTest {
     public void escudo_remove_bonus_25_ao_final_do_turno() {
         CartaEscudo escudo = new CartaEscudo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         escudo.lucky_number = 2;
         h.defence = 25;
         escudo.ending_bonus(h);
@@ -104,7 +113,8 @@ public class CartaTest {
     public void escudo_remove_bonus_50_ao_final_do_turno() {
         CartaEscudo escudo = new CartaEscudo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         escudo.lucky_number = 1;
         h.defence = 50;
         escudo.ending_bonus(h);
@@ -115,7 +125,8 @@ public class CartaTest {
     public void escudo_remove_bonus_75_ao_final_do_turno() {
         CartaEscudo escudo = new CartaEscudo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         escudo.lucky_number = 0;
         h.defence = 75;
         escudo.ending_bonus(h);
@@ -126,7 +137,8 @@ public class CartaTest {
     public void escudo_reseta_tried_apos_ending_bonus() {
         CartaEscudo escudo = new CartaEscudo();
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         escudo.lucky_number = 2;
         escudo.tried = true;
         h.defence = 25;

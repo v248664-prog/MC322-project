@@ -7,6 +7,22 @@ public abstract class Carta {
     protected String descricao;
     protected int custo;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public boolean igual(Carta c1) {
+        if (this == c1) {
+            return true;
+        }
+        if (getClass() != c1.getClass()) {
+            return false;
+        }
+        Carta carta = (Carta) c1;
+
+        return nome.equals(carta.nome);
+    }
+
     /**
      * Construtor da carta.
      * 

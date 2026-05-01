@@ -8,14 +8,16 @@ public class HeroiTest {
     @Test
     public void heroi_vivo_quando_vida_positiva() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         assertTrue(h.health_status());
     }
 
     @Test
     public void heroi_morto_quando_vida_zero() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.health = 0;
         assertFalse(h.health_status());
     }
@@ -23,7 +25,8 @@ public class HeroiTest {
     @Test
     public void heroi_recebe_dano_sem_defesa() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.receive_damage(50);
         assertEquals(50, h.health);
     }
@@ -31,7 +34,8 @@ public class HeroiTest {
     @Test
     public void heroi_recebe_dano_com_defesa() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.defence = 50;
         h.receive_damage(100);
         assertEquals(50, h.health);
@@ -40,7 +44,8 @@ public class HeroiTest {
     @Test
     public void heroi_nao_fica_com_vida_negativa() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.receive_damage(9999);
         assertEquals(0, h.health);
     }
@@ -48,7 +53,8 @@ public class HeroiTest {
     @Test
     public void heroi_restaura_energia_para_30() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         h.energy = 5;
         h.receive_energy();
         assertEquals(30, h.energy);
@@ -57,21 +63,24 @@ public class HeroiTest {
     @Test
     public void heroi_vida_inicial_correta() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         assertEquals(100, h.health);
     }
 
     @Test
     public void heroi_energia_inicial_correta() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         assertEquals(30, h.energy);
     }
 
     @Test
     public void heroi_defesa_inicial_correta() {
         Mao mao = new Mao();
-        Heroi h = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi h = new Heroi(mao, bar);
         assertEquals(0, h.defence);
     }
 }

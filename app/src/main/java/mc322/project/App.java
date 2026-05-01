@@ -14,12 +14,18 @@ public class App {
         Mapa mapa = new Mapa(scan);
         mapa.gerar_mapa();
         Mao mao = new Mao();
-        Heroi pt = new Heroi(mao);
+        Baralho bar = new Baralho();
+        Heroi pt = new Heroi(mao, bar);
 
         //novo while do jogo
         while (pt.health_status() && !mapa.acabou()) {
-            Batalha batalha = mapa.mover();
-            batalha.luta(pt, scan);
+            Eventos ev = mapa.mover();
+            ev.iniciar(pt, scan, bar);
+        }
+        if (pt.health_status() && mapa.acabou()) {
+            System.out.println("\nUltima batalha");
+            Batalha batalha = new Batalha(0);
+            batalha.iniciar(pt, scan, bar);
         }
         //morreu tentando
         if (pt.health_status() == false) {

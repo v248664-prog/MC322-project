@@ -5,22 +5,32 @@ package mc322.project;
 public class Heroi extends Entidade{
    
    private Mao mao;
+   private Baralho bar;
+   protected int ouro;
+   protected int energy_total;
 
    /**
     * Construtor do herói.
     * Inicializa os atributos base como vida, energia e defesa.
     */
-   public Heroi(Mao mao) {
+   public Heroi(Mao mao,Baralho bar) {
         this.name = "Heroi"; 
         this.attack = 0;     
         this.defence = 0;    
-        this.energy = 30;    
+        this.energy = 30;
+        this.energy_total = 30;    
         this.health = 100;
-        this.mao = new Mao();   
+        this.mao = new Mao(); 
+        this.bar = new Baralho();
+        this.ouro = 0;
    }
 
    public Mao getMao() {
         return mao;
+    }
+
+    public Baralho getBaralho() {
+        return bar;
     }
 
    /**
@@ -50,7 +60,7 @@ public class Heroi extends Entidade{
     * Restaura a energia do herói ao início de um novo turno.
     */
    public void receive_energy() {
-      this.energy = 30;
+      this.energy = energy_total;
    }
 
    /**
