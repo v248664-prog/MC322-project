@@ -3,18 +3,18 @@ package mc322.project;
 /**
  * Produto da loja que representa a carta.
  */
-public class CDano4 implements Produtos{
+public class CEscudo2 implements Produtos{
     
     private int preco = 30;
 
     /**
-     * Adiciona uma Carta de Dano4 ao baralho.
+     * Adiciona uma Carta de Escudo2 ao baralho.
      * @param pt
      */
     public void comprar(Heroi pt) {
         Baralho bar = pt.getBaralho();
-        bar.adicionar_a_colecao(new CartaDano4());
-        System.out.println("Você comprou um Rifle");
+        bar.adicionar_a_colecao(new CartaEscudo());
+        System.out.println("Você comprou uma armadura");
     }
 
     /**
@@ -30,6 +30,6 @@ public class CDano4 implements Produtos{
      * @return
      */
     public String getNome() {
-        return "Rifle";
+        return "Armadura";
     }
 }

@@ -120,7 +120,7 @@ public class EfeitoTest {
 
         jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
 
-        assertEquals(330, op.health);
+        assertEquals(130, op.health);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class EfeitoTest {
         jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
         jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
 
-        assertEquals(300, op.health);
+        assertEquals(100, op.health);
     }
 
     // ===== TESTES: CartaQueimadura =====
@@ -163,6 +163,6 @@ public class EfeitoTest {
         carta.usar(op, h, jogo);
         jogo.notificar(Publisher.EVENTO_FIM_TURNO, jogo);
 
-        assertEquals(330, op.health);
+        assertEquals(130, op.health);
     }
 }

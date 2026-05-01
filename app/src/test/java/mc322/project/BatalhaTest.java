@@ -9,13 +9,13 @@ public class BatalhaTest {
 
     @Test
     public void batalha_inicializa_corretamente() {
-        Batalha batalha = new Batalha(5);
+        Batalha batalha = new Batalha(5, false);
         assertEquals(5, batalha.num);
     }
 
     @Test
     public void batalha_fluxo_pular_turnos_ate_fim_combate() {
-        Batalha batalha = new Batalha(1);
+        Batalha batalha = new Batalha(1, false);
         Mao mao = new Mao();
         Baralho bar = new Baralho();
         Heroi heroi = new Heroi(mao, bar);
@@ -24,7 +24,7 @@ public class BatalhaTest {
         Scanner scan = new Scanner(inputsSimulados);
 
         try {
-            batalha.iniciar(heroi, scan, bar);
+            batalha.iniciar(heroi, scan);
         } catch (NoSuchElementException e) {
         }
 
@@ -33,7 +33,7 @@ public class BatalhaTest {
 
     @Test
     public void batalha_fluxo_jogar_primeira_carta() {
-        Batalha batalha = new Batalha(1);
+        Batalha batalha = new Batalha(1, false);
         Mao mao = new Mao();
         Baralho bar = new Baralho();
         Heroi heroi = new Heroi(mao, bar);
@@ -45,7 +45,7 @@ public class BatalhaTest {
         Scanner scan = new Scanner(sb.toString());
 
         try {
-            batalha.iniciar(heroi, scan, bar);
+            batalha.iniciar(heroi, scan);
         } catch (NoSuchElementException e) {
         }
 

@@ -20,6 +20,14 @@ public class Inimigo extends Entidade {
         this.health = 160;
     }
 
+    public Inimigo(int H, int A, int defence) {
+        this.name = "NUKO SUPREMO";
+        this.attack = A;
+        this.defence = defence;
+        this.energy = 30;
+        this.health = H;
+    }
+
     /**
     * Verifica se o inimigo ainda está vivo.
     * 
@@ -108,10 +116,10 @@ public class Inimigo extends Entidade {
         int chance = ram.nextInt(10);
 
         if (this.energy > 10) {
-            if (chance == 7 || chance == 8) {
+            if (chance < 4) {
                 this.escolha = 0;
                 System.out.println("                                      O inimigo decidiu atacar");
-            } else if (chance < 6) {
+            } else if (chance < 8) {
                 this.escolha = 2; // --- NOVO: Opção 3 adicionada (Ação de Efeito) ---
                 System.out.println("                                      O inimigo decidiu preparar um ataque toxico");
             } else {

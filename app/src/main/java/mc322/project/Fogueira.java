@@ -6,11 +6,20 @@ import java.util.Scanner;
 public class Fogueira extends Eventos{
     int num;
 
+    /**
+     * Construtor da fogueira.
+     * @param num
+     */
     public Fogueira(int num) {
         super(num);
     }
     
-    public void iniciar(Heroi pt, Scanner scan, Baralho bar) {
+    /**
+     * Exibe as opções disponíveis.
+     * @param pt
+     * @param scan
+     */
+    public void iniciar(Heroi pt, Scanner scan) {
 
         System.out.println("""
             Você ve a luz de uma fogueira e decide ir em direção
@@ -31,6 +40,6 @@ public class Fogueira extends Eventos{
         int esc = scan.nextInt();
 
         opcoes.get(esc).exe(pt, scan); //executável, kkkkkkkkkkkkkkk
-        this.visitado = true;
+        this.visit = true;
     }
 }

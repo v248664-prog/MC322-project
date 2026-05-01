@@ -2,18 +2,23 @@ package mc322.project;
 import java.util.Random;
 
 public class No {
-    private static Random rand = new Random();
+    private static Random ram = new Random();
 
+    /**
+     * Gera um evento aleatório para cada nó.
+     * @param qnt
+     * @return
+     */
     public Eventos gerarEvento(int qnt) {
-        int r = rand.nextInt(100);
+        int prob = ram.nextInt(100);
 
-        if (r < 60) {
-            return new Batalha(qnt);
+        if (prob < 60) {
+            return new Batalha(qnt, false);
         }
-        else if (r < 75) {
+        else if (prob < 75) {
             return new Loja(qnt);
         }
-        else if (r < 85) {
+        else if (prob < 90) {
             return new Fogueira(qnt);
         }
         else {

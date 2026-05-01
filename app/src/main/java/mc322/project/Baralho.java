@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * Representa o baralho do herói, gerenciando as pilhas de compra e descarte,
+ * a coleção de cartas disponíveis.
+ */
 public class Baralho {
     
     private ArrayList<Carta> pilhaCompra;
@@ -10,6 +14,10 @@ public class Baralho {
     private ArrayList<Carta> todas_as_cartas;
     public ArrayList<Carta> minhas_cartas;
 
+    /**
+     * Inicializando as pilhas de compra e descarte,
+     * a lista de todas as cartas do jogo e a coleção inicial do jogador.
+     */
     public Baralho() {
         pilhaCompra = new ArrayList<>();
         pilhaDescarte = new ArrayList<>();
@@ -28,7 +36,7 @@ public class Baralho {
         todas_as_cartas.add(new CartaQueimadura());
 
         minhas_cartas.add(new CartaVeneno());
-        minhas_cartas.add(new CartaEscudo2());
+        minhas_cartas.add(new CartaEscudo());
         minhas_cartas.add(new CartaDano5());
         minhas_cartas.add(new CartaDano3());
 
@@ -39,7 +47,7 @@ public class Baralho {
             pilhaCompra.add(new CartaDano5());
         }
         for (int i = 0; i < 15; i++) {
-            pilhaCompra.add(new CartaEscudo2());
+            pilhaCompra.add(new CartaEscudo());
         }
         for (int i = 0; i < 15; i++) {
             pilhaCompra.add(new CartaVeneno());
@@ -47,29 +55,52 @@ public class Baralho {
         embaralhar();
     }
 
+    /**
+     * Embaralha aleatoriamente a pilha de compra.
+     */
     public void embaralhar() {
         Collections.shuffle(pilhaCompra);
     }
 
+    /**
+     * Move uma carta para a pilha de descarte.
+     *
+     * @param c
+     */
     public void descartar(Carta c) {
         pilhaDescarte.add(c);
     }
 
+    /**
+     * Recicla todas as cartas da pilha de descarte.
+     */
     public void reciclarDescarte() {
         pilhaCompra.addAll(pilhaDescarte);
         pilhaDescarte.clear();
         embaralhar();
     }
 
+    /**
+     * Adiciona uma carta à coleção pessoal do jogador.
+     * @param carta
+     */
     public void adicionar_a_colecao(Carta carta) {
         minhas_cartas.add(carta);
     }
 
+    /**
+     * Limpa completamente as pilhas de compra e descarte.
+     */
     public void DescarteTotal() {
         pilhaCompra.clear();
         pilhaDescarte.clear();
     }
 
+    /**
+     * Exibe no console todas as cartas de uma lista fornecida,
+     * numeradas por índice.
+     * @param todas
+     */
     public void MostraTodasCartas(ArrayList<Carta> todas) {
 
         System.out.println("-------Seu Baralho-------");
@@ -79,43 +110,51 @@ public class Baralho {
         }
     }
 
+    /**
+     * Compra da pilhaCompra e reinicia o deck quando ele acaba.
+     * @return
+     */
     public Carta comprarCarta() {
         if (pilhaCompra.isEmpty()) {
+            if (pilhaDescarte.isEmpty()) {
+                return null;
+            }
             reciclarDescarte();
         }
-
-        else if(!pilhaCompra.isEmpty()) {
-            return pilhaCompra.remove(0);
-        }
-
-        return null;
+        return pilhaCompra.remove(0);
     }
 
+    /**
+     * Permite ao jogador escolher quantas cópias de cada carta de sua coleção
+     * deseja adicionar à pilha de compra, respeitando o limite de 60 cartas.
+     * @param scan
+     */
     public void Escolhe_carta(Scanner scan) {
-        int soma = 0;
+        int soma = pilhaCompra.size();
         for (int i = 0; i < minhas_cartas.size(); i++) {
-            System.err.println("\nQuantas cartas" + minhas_cartas.get(i).getNome() + "Você deseja adicionar?");
+            System.out.println("\nQuantas cartas " + minhas_cartas.get(i).getNome() + " você deseja adicionar?");
             int num = scan.nextInt();
             soma += num;
+            if (soma > 60) {
+                System.out.println("Você ultrapassou o limite de 60 cartas!");
+                return;
+            }
             for (int j = 0; j < num; j++) {
                 pilhaCompra.add(minhas_cartas.get(i));
             }
-            System.err.println("Você está usando " + soma + " Cartas");
-            if (soma > 60) {
-                System.out.println("Você ultrapassou o limite");
-                return;
-            }
+            System.out.println("Você está usando " + soma + " cartas");
         }
     }
 
+    /**
+     * Inicia o processo de montagem de baralho personalizado.
+     * @param scan
+     */
     public void Montar_Baralho(Scanner scan) {
-
         DescarteTotal();
-
-        System.out.println("o limite de cartas é 60");
-        while (pilhaCompra.size() <= 60) {
-            Escolhe_carta(scan);
-        }
+        System.out.println("O limite de cartas é 60. Digite 0 para cada carta que não deseja adicionar.");
+        Escolhe_carta(scan);
+        embaralhar();
     }
 
 }

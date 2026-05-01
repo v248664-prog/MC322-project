@@ -4,24 +4,43 @@ import java.util.Scanner;
 
 public abstract class Eventos {
     protected int id;
-    protected boolean visitado = false;
+    protected boolean visit = false;
 
+     /**
+     * Constrói um evento com o identificador fornecido.
+     * @param id
+     */
     public Eventos(int id) {
         this.id = id;
     }
 
+    /**
+     * Retorna o identificador do evento.
+     * @return
+     */
     public int getId() {
         return id;
     }
 
-    public boolean isVisitado() {
-        return visitado;
+    /**
+     * Informa se o evento já foi visitado.
+     * @return
+     */
+    public boolean ehVisit() {
+        return visit;
     }
 
-    public void setVisitado(boolean v) {
-        this.visitado = v;
+    /**
+     * Define o estado de visita do evento.
+     * @param v
+     */
+    public void setVisit(boolean v) {
+        this.visit = v;
     }
 
-    abstract void iniciar(Heroi pt, Scanner scan, Baralho bar);
+    /**
+     * Inicia um evento
+     */
+    abstract void iniciar(Heroi pt, Scanner scan);
 
 }

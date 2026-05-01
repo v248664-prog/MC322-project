@@ -2,6 +2,9 @@ package mc322.project;
 
 import java.util.Scanner;
 
+/**
+ * Restaura 30 pontos de vida, respeitando o limite máximo de 100.
+ */
 public class Descansar implements Opcoes {
 
     protected String nome = "Descansar";
@@ -14,6 +17,10 @@ public class Descansar implements Opcoes {
         }
     }
 
+    /**
+     * Retorna o nome de exibição da opção.
+     * @return
+     */
     public String getNome() {
         return this.nome;
     }

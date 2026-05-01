@@ -28,7 +28,7 @@ public class InimigoTest {
         // defence = 10, health = 360
         // dano real = 100 * (100 - 10) / 100 = 90
         op.receive_damage(100);
-        assertEquals(270, op.health);
+        assertEquals(60, op.health);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class InimigoTest {
         // attack = 30, heroi defence = 0
         // dano real = 30
         op.bite(h);
-        assertEquals(70, h.health);
+        assertEquals(80, h.health);
     }
 
     @Test

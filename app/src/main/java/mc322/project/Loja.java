@@ -6,11 +6,21 @@ import java.util.Scanner;
 public class Loja extends Eventos{
     int num;
 
+    /**
+     * Construtor do evento de loja.
+     * @param num
+     */
     public Loja(int num) {
         super(num);
     }
     
-    public void iniciar(Heroi pt, Scanner scan, Baralho bar){
+    /**
+     * Inicia o evento de loja.
+     * @param pt
+     * @param scan
+     */
+    public void iniciar(Heroi pt, Scanner scan){
+        Baralho bar = pt.getBaralho();
         System.out.println("""
           /  /   /   /   /   /   /  /
         /  /   /   /   /   /   /   / /
@@ -24,21 +34,26 @@ public class Loja extends Eventos{
                 não te permite roubar
         """);
 
-        List<produtos> itens = Factory.gerarObjetos(bar);
+        List<Produtos> itens = Factory.gerarObjetos(bar);
 
         for (int i = 0; i < itens.size(); i++) {
-            produtos item = itens.get(i);
-            System.out.println(i + ": " + item.getNome() + "" + item.getPreco());
+            Produtos item = itens.get(i);
+            System.out.println(i + ": " + item.getNome() + " / Preço: " + item.getPreco());
         }
-
-        System.out.println("Vocẽ tem: " + pt.ouro + " de ouro");
+        System.out.println(itens.size() + ": Sair sem comprar nada");
+        System.out.println("\nVocê tem: " + pt.ouro + " de ouro");
 
         int esc = scan.nextInt();
         
-        produtos item = itens.get(esc);
-        if (pt.ouro > item.getPreco()) {
-            pt.ouro -= item.getPreco();
-            item.comprar(pt);
+        if (esc == itens.size()) {
+            System.out.println(">>> Você decidiu não comprar nada.");
+        }
+        else if (esc >= 0 && esc < itens.size()) {
+            Produtos item = itens.get(esc);
+            if (pt.ouro >= item.getPreco()) {
+                pt.ouro -= item.getPreco();
+                item.comprar(pt);
+            }
         }
         else {
             System.out.println("Você não tem ouro suficiente");
@@ -49,7 +64,7 @@ public class Loja extends Eventos{
         if(esc == 1) {
             bar.Montar_Baralho(scan);
         }
-        this.visitado = true;
+        this.visit = true;
     }
 
 }

@@ -7,20 +7,28 @@ public abstract class Carta {
     protected String descricao;
     protected int custo;
 
+    /**
+     * Retorna o nome da carta.
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Verifica se esta carta é igual a outra, comparando a classe e o nome.
+     */
     public boolean igual(Carta c1) {
+        if (c1 == null) {
+            return false;
+        }
         if (this == c1) {
             return true;
         }
         if (getClass() != c1.getClass()) {
             return false;
         }
-        Carta carta = (Carta) c1;
-
-        return nome.equals(carta.nome);
+        return this.nome.equals(c1.nome);
     }
 
     /**

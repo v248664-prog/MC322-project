@@ -4,18 +4,29 @@ import java.util.List;
 
 public class Factory {
 
+    /**
+     * Verifica se uma carta ainda não está na coleção do baralho.
+     * @param bar
+     * @param c
+     * @return
+     */
     public static boolean compara_lista (Baralho bar, Carta c) {
         ArrayList<Carta> minhas_cartas = bar.minhas_cartas;
         for (int i = 0; i < minhas_cartas.size(); i++) {
-            if(c.equals(bar.minhas_cartas.get(i))) {
+            if(c.igual(bar.minhas_cartas.get(i))) {
                 return false;
             }
         }
         return true;
     }
 
-    public static List<produtos> gerarObjetos(Baralho bar) {
-        List<produtos> itens = new ArrayList<>();
+    /**
+     * Gera a lista de produtos disponíveis na loja.
+     * @param bar
+     * @return
+     */
+    public static List<Produtos> gerarObjetos(Baralho bar) {
+        List<Produtos> itens = new ArrayList<>();
 
         itens.add(new PocaoCura());
         itens.add(new PocaoEnergia());
@@ -25,8 +36,8 @@ public class Factory {
         if (compara_lista(bar, new CartaQueimadura())){
             itens.add(new CQueimadura());
         }
-        if (compara_lista(bar, new CartaEscudo())){
-            itens.add(new CEscudo());
+        if (compara_lista(bar, new CartaEscudo2())){
+            itens.add(new CEscudo2());
         }
         if (compara_lista(bar, new CartaDano4())){
             itens.add(new CDano4());

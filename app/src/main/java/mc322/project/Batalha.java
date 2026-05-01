@@ -7,11 +7,13 @@ import java.util.Scanner;
  * do jogo e controlar as interações entre herói, inimigo e cartas.
  */
 public class Batalha extends Eventos{
-    int num;
-    boolean visit;
+    public int num;
+    boolean Final;
 
-    public Batalha(int num) {
+    public Batalha(int num,boolean Final) {
         super(num);
+        this.num = num;
+        this.Final = Final;
     }
 
 
@@ -19,11 +21,18 @@ public class Batalha extends Eventos{
     * Método que inicia o jogo.
     * @param args
     */    
-    public void iniciar(Heroi pt, Scanner scan, Baralho bar) {
+    public void iniciar(Heroi pt, Scanner scan) {
 
-    System.out.println("                                         A passagem está bloqueada");
-    Inimigo op = new Inimigo();
+    Inimigo op;
+    if (Final) {
+        op = new Inimigo(430, 40, 20);
+    } else {
+        System.out.println("                                    A passagem está bloqueada");
+        op = new Inimigo();
+    }
+    Baralho bar = pt.getBaralho();
     Publisher jogo = new Publisher();
+    pt.energy = pt.energy_total;
     Mao mao = pt.getMao();
 
     for (int i = 0; i < 4; i++) {
@@ -85,6 +94,8 @@ public class Batalha extends Eventos{
                 op.batalha(pt, jogo);
             }
             
+            CartaEscudo escudo = new CartaEscudo();
+            escudo.ending_bonus(pt);
             pt.receive_energy();
             op.receive_energy();
         }
@@ -92,13 +103,13 @@ public class Batalha extends Eventos{
 
         if (op.health_status_op()) {
             System.out.println("\nVocê não deveria ter começado essa batalha");
+        } else {
+            System.out.println("\nO inimigo desapareceu");
             System.out.println("\nVocê obteu 30 de ouro aṕos vencer a batalha");
             pt.ouro += 30;
             if (pt.energy_total > 30) {
                 pt.energy = pt.energy_total = 30;
             }
-        } else {
-            System.out.println("\nO inimigo desapareceu");
         }
 
         this.visit = true;

@@ -20,8 +20,8 @@ public class Heroi extends Entidade{
         this.energy = 30;
         this.energy_total = 30;    
         this.health = 100;
-        this.mao = new Mao(); 
-        this.bar = new Baralho();
+        this.mao = mao; 
+        this.bar = bar;
         this.ouro = 0;
    }
 

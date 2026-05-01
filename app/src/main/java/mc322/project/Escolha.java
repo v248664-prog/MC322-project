@@ -5,11 +5,20 @@ import java.util.Scanner;
 public class Escolha extends Eventos {
     int num;
 
+    /**
+     * Construtor da Escolha.
+     * @param num
+     */
     public Escolha(int num) {
         super(num);
     }
     
-    public void iniciar(Heroi pt, Scanner scan, Baralho bar) {
+    /**
+     * Exibe as opções disponíveis e processa a escolha do jogador.
+     * @param pt
+     * @param scan
+     */
+    public void iniciar(Heroi pt, Scanner scan) {
         System.out.println("""
         Você encontra um galpão com suprimentos, mas
         você só tem capacidade de levar um deles na
@@ -29,17 +38,17 @@ public class Escolha extends Eventos {
                 pt.health = 100;
             }
         }
-        if (choice == 2) {
+        else if (choice == 2) {
             pt.energy = 45;
             pt.energy_total = 45;
         }
-        if (choice == 3) {
+        else if (choice == 3) {
             pt.ouro += 20;
         }
         else {
             System.out.println("Você perdeu uma oportunidade que não voltará");
         }
-        this.visitado = true;
+        this.visit = true;
 
     }
 }

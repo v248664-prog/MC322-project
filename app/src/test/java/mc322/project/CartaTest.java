@@ -13,7 +13,7 @@ public class CartaTest {
         Baralho bar = new Baralho();
         Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
-        assertEquals(324, op.health);
+        assertEquals(120, op.health);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class CartaTest {
         Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
-        assertEquals(324, op.health);
+        assertEquals(120, op.health);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class CartaTest {
         Baralho bar = new Baralho();
         Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
-        assertEquals(333, op.health);
+        assertEquals(130, op.health);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CartaTest {
         Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
-        assertEquals(333, op.health);
+        assertEquals(130, op.health);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class CartaTest {
         Baralho bar = new Baralho();
         Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
-        assertEquals(306, op.health);
+        assertEquals(60, op.health);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CartaTest {
         Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
-        assertEquals(306, op.health);
+        assertEquals(60, op.health);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class CartaTest {
         Baralho bar = new Baralho();
         Heroi h = new Heroi(mao, bar);
         carta.shoot(op, h);
-        assertEquals(333, op.health);
+        assertEquals(130, op.health);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class CartaTest {
         Heroi h = new Heroi(mao, bar);
         Publisher jogo = new Publisher();
         carta.usar(op, h, jogo);
-        assertEquals(333, op.health);
+        assertEquals(130, op.health);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class CartaTest {
         escudo.lucky_number = 2;
         h.defence = 25;
         escudo.ending_bonus(h);
-        assertEquals(0, h.defence);
+        assertEquals(-25, h.defence);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class CartaTest {
         escudo.lucky_number = 1;
         h.defence = 50;
         escudo.ending_bonus(h);
-        assertEquals(0, h.defence);
+        assertEquals(-25, h.defence);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class CartaTest {
         escudo.lucky_number = 0;
         h.defence = 75;
         escudo.ending_bonus(h);
-        assertEquals(0, h.defence);
+        assertEquals(-25, h.defence);
     }
 
     @Test

@@ -30,7 +30,7 @@ public class Mapa {
      */
     public void gerar_mapa() {
         Random ram = new Random();
-        int h = ram.nextInt(6) + 2;
+        int h = ram.nextInt(8) + 8;
         raiz = criar_arvore(h);
         atual = raiz;
         }
@@ -74,13 +74,25 @@ public class Mapa {
         return ((Eventos) no.getUserObject()).getId();
     }
 
+    /**
+     * Verifica se o evento de um nó já foi visitado.
+     * @param no
+     * @return
+     *
     private boolean visitado(DefaultMutableTreeNode no) {
-        return ((Eventos) no.getUserObject()).isVisitado();
+        return ((Eventos) no.getUserObject()).ehVisit();
     }
 
+    /**
+     * Exibe o caminho percorrido no mapa.
+     * @return
+     */
     public Eventos mover() {
 
-        Eventos ev = (Eventos) atual.getUserObject();
+        if (atual.getChildCount() == 0) {
+            fim = true;
+            return (Eventos) atual.getUserObject();
+        }
 
         DefaultMutableTreeNode pri = raiz;
 
@@ -92,10 +104,11 @@ public class Mapa {
             System.out.println(getId(pri));
             System.out.println("|");
             System.out.println("|");
+            if (pri.getChildCount() < 2) break;
             DefaultMutableTreeNode esq = (DefaultMutableTreeNode) pri.getChildAt(0);
             DefaultMutableTreeNode dir = (DefaultMutableTreeNode) pri.getChildAt(1);
 
-            if(visitado(esq)) {
+            if(((Eventos) esq.getUserObject()).ehVisit()) {
                 pri = esq;
             }
             else {
@@ -107,6 +120,11 @@ public class Mapa {
         System.out.println("|--------|");
         System.out.println("|        |");
 
+        if (atual.getChildCount() < 2) {
+            fim = true;
+            return (Eventos) atual.getUserObject();
+        }
+
         DefaultMutableTreeNode esq = (DefaultMutableTreeNode) atual.getChildAt(0);
         DefaultMutableTreeNode dir = (DefaultMutableTreeNode) atual.getChildAt(1);
 
@@ -114,18 +132,26 @@ public class Mapa {
         System.out.println("\nEscolha: 1 (esquerda) e 0 (direita)");
 
         int esc = scan.nextInt();
-        if (esc == 0) esc = 1;
-        if (esc == 1) esc = 0;
-        atual = (DefaultMutableTreeNode) atual.getChildAt(esc);
+
+        if (esc == 1) {
+            atual = esq;
+        }
+        else {
+            atual = dir;
+        }
+        ((Eventos) atual.getUserObject()).setVisit(true);
 
         if (atual.getChildCount() == 0) {
             fim = true;
-            return ev;
         }
 
         return (Eventos) atual.getUserObject();
     }
 
+    /**
+     * Informa se o herói chegou ao fim do mapa.
+     * @return
+     */
     public boolean acabou() {
         return fim;
     }

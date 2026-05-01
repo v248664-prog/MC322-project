@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class App {
     /**
-     * Classe responsável por gerenciar a lógica de árvore binária do jogo
+     * Classe responsável por gerenciar a lógica de árvore binária do jogo.
      * @param args
      */
     public static void main(String[] args) {
@@ -20,12 +20,12 @@ public class App {
         //novo while do jogo
         while (pt.health_status() && !mapa.acabou()) {
             Eventos ev = mapa.mover();
-            ev.iniciar(pt, scan, bar);
+            ev.iniciar(pt, scan);
         }
         if (pt.health_status() && mapa.acabou()) {
             System.out.println("\nUltima batalha");
-            Batalha batalha = new Batalha(0);
-            batalha.iniciar(pt, scan, bar);
+            Batalha batalha = new Batalha(0, true);
+            batalha.iniciar(pt, scan);
         }
         //morreu tentando
         if (pt.health_status() == false) {
