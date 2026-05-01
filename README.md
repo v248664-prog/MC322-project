@@ -55,3 +55,9 @@ test/java/mc322/project/
 ## Observações
 
 O foco do projeto foi praticar orientação a objetos e organização de código em Java.
+
+Fogueira (strategy)
+- A fogueira segue o padrão strategy. Nela, cada opção oferecida está encapsulada em uma classe que faz a interface(opcoes)
+
+Loja (factory)
+-A loja segue o padrão factory. Nele, a gera dinamicamente os objetos (produtos) que serão disponibilizados na loja
