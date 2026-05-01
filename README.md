@@ -60,4 +60,4 @@ Fogueira (strategy)
 - A fogueira segue o padrão strategy. Nela, cada opção oferecida está encapsulada em uma classe que faz a interface(opcoes)
 
 Loja (factory)
--A loja segue o padrão factory. Nele, a gera dinamicamente os objetos (produtos) que serão disponibilizados na loja
+- A loja segue o padrão factory. Nele, a gera dinamicamente os objetos (produtos) que serão disponibilizados na loja
